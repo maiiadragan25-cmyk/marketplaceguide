@@ -1,0 +1,1806 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Подготовка к запуску — площадки США и России</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Mulish:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --ink: #0f0f0d;
+  --ink2: #2a2a25;
+  --muted: #6b6b60;
+  --hint: #aaaaa0;
+  --bg: #f5f3ee;
+  --bg2: #eceae3;
+  --bg3: #e0ddd4;
+  --line: rgba(15,15,13,.1);
+  --line2: rgba(15,15,13,.18);
+
+  --tt: #010101;
+  --tt-red: #FE2C55;
+  --tt-blue: #25F4EE;
+  --tt-bg: #0f0f0f;
+  --tt-card: #1a1a1a;
+
+  --az: #232f3e;
+  --az-orange: #FF9900;
+  --az-light: #ffa41c;
+  --az-bg: #232f3e;
+
+  --wb: #CB11AB;
+  --wb-dark: #8B0070;
+  --wb-bg: #1a0015;
+  --wb-card: #230020;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Mulish', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* ── LAYOUT ── */
+.shell { display: flex; min-height: 100vh; }
+
+/* ── SIDEBAR ── */
+.sidebar {
+  width: 200px;
+  flex-shrink: 0;
+  background: var(--ink);
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+  overflow-y: auto;
+}
+.sidebar::-webkit-scrollbar { width: 0; }
+
+.sb-logo {
+  padding: 28px 20px 20px;
+  border-bottom: 0.5px solid rgba(255,255,255,.08);
+}
+.sb-logo-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.3;
+}
+.sb-logo-sub {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.3);
+  margin-top: 4px;
+}
+
+.sb-nav { padding: 12px 0 24px; flex: 1; }
+
+.sb-platform {
+  padding: 14px 20px 4px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.25);
+}
+
+.sb-link {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 20px;
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(255,255,255,.45);
+  cursor: pointer;
+  border-left: 2px solid transparent;
+  transition: all .13s;
+}
+.sb-link:hover { color: rgba(255,255,255,.8); background: rgba(255,255,255,.04); }
+.sb-link.on { color: #fff; border-left-color: var(--accent); background: rgba(255,255,255,.06); }
+.sb-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+  opacity: 0;
+  transition: opacity .13s;
+}
+.sb-link.on .sb-dot { opacity: 1; }
+
+/* ── MAIN ── */
+.main { margin-left: 200px; flex: 1; }
+
+.section {
+  display: none;
+  min-height: 100vh;
+  animation: fadeUp .2s ease both;
+}
+.section.on { display: block; }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── COVER ── */
+.cover {
+  min-height: 100vh;
+  background: var(--ink);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px 64px;
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 80% 30%, rgba(254,44,85,.12) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 60% at 20% 70%, rgba(255,153,0,.08) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 60% 80%, rgba(203,17,171,.1) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cover-tag {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.4);
+  margin-bottom: 20px;
+}
+.cover-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 56px;
+  font-weight: 900;
+  line-height: 1.07;
+  color: #fff;
+  margin-bottom: 6px;
+}
+.cover-title span { color: rgba(255,255,255,.3); }
+.cover-sub {
+  font-size: 16px;
+  color: rgba(255,255,255,.5);
+  margin-bottom: 52px;
+  max-width: 420px;
+  line-height: 1.75;
+}
+.cover-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  max-width: 700px;
+}
+.cover-card {
+  padding: 20px;
+  border: 0.5px solid rgba(255,255,255,.1);
+  cursor: pointer;
+  transition: all .15s;
+  position: relative;
+  overflow: hidden;
+}
+.cover-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity .2s;
+}
+.cover-card.tt::before { background: linear-gradient(135deg, rgba(254,44,85,.15), rgba(37,244,238,.08)); }
+.cover-card.az::before { background: linear-gradient(135deg, rgba(255,153,0,.18), rgba(35,47,62,.3)); }
+.cover-card.wb::before { background: linear-gradient(135deg, rgba(203,17,171,.18), rgba(26,0,21,.3)); }
+.cover-card:hover::before { opacity: 1; }
+.cover-card:hover { border-color: rgba(255,255,255,.25); transform: translateY(-2px); }
+
+.cc-emoji { font-size: 28px; margin-bottom: 10px; display: block; }
+.cc-name { font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+.cc-hint { font-size: 11px; color: rgba(255,255,255,.35); line-height: 1.5; }
+.cc-arrow { font-size: 11px; color: rgba(255,255,255,.2); margin-top: 10px; display: block; }
+
+/* ── TT SECTION ── */
+.tt-section {
+  background: var(--tt-bg);
+  color: #fff;
+  padding: 0;
+}
+.tt-hero {
+  padding: 52px 64px 40px;
+  border-bottom: 0.5px solid rgba(255,255,255,.08);
+  position: relative;
+  overflow: hidden;
+}
+.tt-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 100% at 90% 50%, rgba(254,44,85,.15) 0%, transparent 60%);
+  pointer-events: none;
+}
+.platform-eye {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.tt-section .platform-eye { color: var(--tt-red); }
+.az-section .platform-eye { color: var(--az-orange); }
+.wb-section .platform-eye { color: var(--wb); }
+
+.platform-h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 38px;
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+.platform-lead {
+  font-size: 13px;
+  line-height: 1.75;
+  max-width: 520px;
+}
+.tt-section .platform-lead { color: rgba(255,255,255,.55); }
+
+.tt-body { padding: 40px 64px; }
+
+/* dark tabs */
+.dtabs { display: flex; gap: 0; border-bottom: 0.5px solid rgba(255,255,255,.1); margin-bottom: 32px; }
+.dtab {
+  padding: 9px 20px 11px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -0.5px;
+  color: rgba(255,255,255,.35);
+  letter-spacing: .03em;
+  font-family: 'Mulish', sans-serif;
+  transition: all .12s;
+}
+.dtab:hover { color: rgba(255,255,255,.7); }
+.dtab.on { color: var(--tab-accent); border-bottom-color: var(--tab-accent); }
+
+.dpanel { display: none; }
+.dpanel.on { display: block; }
+
+/* dark step list */
+.dsteps { display: flex; flex-direction: column; }
+.dstep {
+  display: flex;
+  gap: 18px;
+  padding: 20px 0;
+  border-bottom: 0.5px solid rgba(255,255,255,.06);
+}
+.dstep:last-child { border-bottom: none; }
+.dstep-l { display: flex; flex-direction: column; align-items: center; width: 30px; flex-shrink: 0; }
+.dnum {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  flex-shrink: 0;
+}
+.dstep.key .dnum { background: var(--step-accent); color: #fff; }
+.dstep:not(.key) .dnum { border: 0.5px solid rgba(255,255,255,.15); color: rgba(255,255,255,.35); }
+.dline { width: 0.5px; flex: 1; margin-top: 6px; }
+.tt-section .dline { background: rgba(255,255,255,.08); }
+.az-section .dline { background: rgba(255,255,255,.08); }
+.wb-section .dline { background: rgba(255,255,255,.08); }
+.dstep:last-child .dline { display: none; }
+.dstep-b { flex: 1; padding-top: 2px; }
+.dstep-title { font-size: 14px; font-weight: 600; color: #fff; margin-bottom: 5px; }
+.dstep-desc { font-size: 13px; line-height: 1.7; }
+.tt-section .dstep-desc { color: rgba(255,255,255,.5); }
+
+/* dark inset */
+.dinset {
+  margin-top: 12px;
+  padding: 12px 14px;
+  border-radius: 2px;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.tt-dinset { background: rgba(255,255,255,.05); border-left: 2px solid var(--tt-red); color: rgba(255,255,255,.6); }
+.az-dinset { background: rgba(255,255,255,.05); border-left: 2px solid var(--az-orange); color: rgba(255,255,255,.6); }
+.wb-dinset { background: rgba(255,255,255,.05); border-left: 2px solid var(--wb); color: rgba(255,255,255,.6); }
+
+/* dark cards */
+.dcards { display: grid; gap: 12px; margin: 20px 0; }
+.dcards-2 { grid-template-columns: 1fr 1fr; }
+.dcards-3 { grid-template-columns: 1fr 1fr 1fr; }
+.dcard {
+  padding: 16px 18px;
+  border: 0.5px solid rgba(255,255,255,.1);
+}
+.dcard-label { font-size: 9px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 7px; }
+.dcard-val { font-family: 'JetBrains Mono', monospace; font-size: 18px; color: #fff; margin-bottom: 4px; }
+.dcard-note { font-size: 12px; line-height: 1.55; color: rgba(255,255,255,.4); }
+
+/* dark table */
+.dtable { width: 100%; border-collapse: collapse; font-size: 12px; margin: 16px 0; }
+.dtable th {
+  text-align: left;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  padding: 8px 12px;
+  border-bottom: 0.5px solid rgba(255,255,255,.15);
+  color: rgba(255,255,255,.35);
+}
+.dtable td {
+  padding: 10px 12px;
+  border-bottom: 0.5px solid rgba(255,255,255,.06);
+  color: rgba(255,255,255,.55);
+  vertical-align: top;
+  line-height: 1.55;
+}
+.dtable tr:last-child td { border-bottom: none; }
+.dtable td:first-child { font-weight: 600; color: rgba(255,255,255,.8); }
+
+/* dark chip */
+.dchip {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 2px;
+  margin-left: 7px;
+  vertical-align: middle;
+}
+
+/* dark warn */
+.dwarn {
+  padding: 12px 16px;
+  font-size: 13px;
+  line-height: 1.65;
+  margin-top: 24px;
+  border-left: 2px solid;
+}
+.tt-warn { background: rgba(254,44,85,.08); border-color: var(--tt-red); color: rgba(255,255,255,.6); }
+.az-warn { background: rgba(255,153,0,.08); border-color: var(--az-orange); color: rgba(255,255,255,.6); }
+.wb-warn { background: rgba(203,17,171,.1); border-color: var(--wb); color: rgba(255,255,255,.6); }
+.dwarn b { color: #fff; font-weight: 600; }
+
+/* ── AZ SECTION ── */
+.az-section {
+  background: var(--az-bg);
+  color: #fff;
+}
+.az-hero {
+  padding: 52px 64px 40px;
+  border-bottom: 0.5px solid rgba(255,255,255,.08);
+  position: relative;
+  overflow: hidden;
+}
+.az-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 85% 40%, rgba(255,153,0,.12) 0%, transparent 60%);
+  pointer-events: none;
+}
+.az-body { padding: 40px 64px; }
+.az-section .dstep-desc { color: rgba(255,255,255,.5); }
+
+/* ── WB SECTION ── */
+.wb-section {
+  background: var(--wb-bg);
+  color: #fff;
+}
+.wb-hero {
+  padding: 52px 64px 40px;
+  border-bottom: 0.5px solid rgba(255,255,255,.08);
+  position: relative;
+  overflow: hidden;
+}
+.wb-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 80% at 90% 30%, rgba(203,17,171,.2) 0%, transparent 55%);
+  pointer-events: none;
+}
+.wb-body { padding: 40px 64px; }
+.wb-section .dstep-desc { color: rgba(255,255,255,.5); }
+
+/* ── COMPARISON SECTION ── */
+.cmp-section {
+  background: var(--bg);
+  padding: 52px 64px 72px;
+}
+.cmp-eye {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+.cmp-h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 38px;
+  font-weight: 900;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+.cmp-lead { font-size: 13px; color: var(--muted); margin-bottom: 36px; max-width: 500px; }
+
+.cmp-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.cmp-table th {
+  text-align: left;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  padding: 10px 16px;
+  color: var(--muted);
+  border-bottom: 0.5px solid var(--line2);
+}
+.cmp-table th:nth-child(2) { color: var(--tt-red); }
+.cmp-table th:nth-child(3) { color: var(--az-orange); }
+.cmp-table th:nth-child(4) { color: var(--wb); }
+
+.cmp-table td {
+  padding: 12px 16px;
+  border-bottom: 0.5px solid var(--line);
+  color: var(--ink2);
+  vertical-align: top;
+  line-height: 1.6;
+}
+.cmp-table tr:last-child td { border-bottom: none; }
+.cmp-table tr:nth-child(even) td { background: var(--bg2); }
+.cmp-table td:first-child { font-weight: 600; color: var(--ink); white-space: nowrap; }
+
+.val-g { color: #2a5e38; font-weight: 600; }
+.val-r { color: #b5281c; font-weight: 600; }
+
+/* ── misc ── */
+code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  background: rgba(255,255,255,.1);
+  padding: 1px 5px;
+  border-radius: 2px;
+}
+
+.light-section code {
+  background: rgba(0,0,0,.07);
+  color: var(--ink2);
+}
+</style>
+</head>
+<body>
+<div class="shell">
+
+<!-- SIDEBAR -->
+<nav class="sidebar">
+  <div class="sb-logo">
+    <div class="sb-logo-text">Подготовка<br>к запуску</div>
+    <div class="sb-logo-sub">Площадки США / Россия</div>
+  </div>
+  <div class="sb-nav">
+    <div class="sb-platform">Обзор</div>
+    <div class="sb-link" style="--accent:#ffffff80" onclick="go('cover',this)">
+      <div class="sb-dot"></div>Главная
+    </div>
+    <div class="sb-platform">Платформы</div>
+    <div class="sb-link" style="--accent:var(--tt-red)" onclick="go('tt',this)">
+      <div class="sb-dot"></div>TikTok Shop
+    </div>
+    <div class="sb-link" style="--accent:var(--az-orange)" onclick="go('az',this)">
+      <div class="sb-dot"></div>Amazon
+    </div>
+    <div class="sb-link" style="--accent:var(--wb)" onclick="go('wb',this)">
+      <div class="sb-dot"></div>Wildberries
+    </div>
+    <div class="sb-platform">Итог</div>
+    <div class="sb-link" style="--accent:#aaa" onclick="go('cmp',this)">
+      <div class="sb-dot"></div>Сравнение
+    </div>
+    <div class="sb-platform">Практика</div>
+    <div class="sb-link" style="--accent:#7ec8a0" onclick="go('roadmap',this)">
+      <div class="sb-dot"></div>Дорожная карта
+    </div>
+    <div class="sb-link" style="--accent:#f4a460" onclick="go('calc',this)">
+      <div class="sb-dot"></div>Калькулятор маржи
+    </div>
+    <div class="sb-link" style="--accent:#e07070" onclick="go('mistakes',this)">
+      <div class="sb-dot"></div>Ошибки и блокировки
+    </div>
+    <div class="sb-link" style="--accent:#c0a0e0" onclick="go('banned',this)">
+      <div class="sb-dot"></div>Запрещённые товары
+    </div>
+    <div class="sb-link" style="--accent:#60b8d0" onclick="go('start1000',this)">
+      <div class="sb-dot"></div>Старт с $1000
+    </div>
+    <div class="sb-platform">После регистрации</div>
+    <div class="sb-link" style="--accent:#7ec8e0" onclick="go('after',this)">
+      <div class="sb-dot"></div>Первые шаги
+    </div>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main class="main">
+
+<!-- COVER -->
+<div id="s-cover" class="section on">
+  <div class="cover">
+    <div class="cover-tag">Тема созвона · 2025</div>
+    <div class="cover-title">Подготовка<br>к запуску.<br><span>США / Россия.</span></div>
+    <div class="cover-sub">Регистрация на маркетплейсах — требования, документы, комиссии и схемы работы.</div>
+    <div class="cover-cards">
+      <div class="cover-card tt" onclick="go('tt',null)">
+        <span class="cc-emoji">🎵</span>
+        <div class="cc-name">TikTok Shop</div>
+        <div class="cc-hint">США · физлица и бизнес · комиссия 6%</div>
+        <span class="cc-arrow">Читать →</span>
+      </div>
+      <div class="cover-card az" onclick="go('az',null)">
+        <span class="cc-emoji">📦</span>
+        <div class="cc-name">Amazon</div>
+        <div class="cc-hint">США · Individual и Professional · FBA/FBM</div>
+        <span class="cc-arrow">Читать →</span>
+      </div>
+      <div class="cover-card wb" onclick="go('wb',null)">
+        <span class="cc-emoji">🛍️</span>
+        <div class="cc-name">Wildberries</div>
+        <div class="cc-hint">РФ · самозанятый/ИП/ООО · взнос 30 000 ₽</div>
+        <span class="cc-arrow">Читать →</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TIKTOK SHOP -->
+<div id="s-tt" class="section tt-section">
+  <div class="tt-hero">
+    <div class="platform-eye">01 — TikTok Shop</div>
+    <div class="platform-h1" style="color:#fff">Регистрация<br>продавца</div>
+    <div class="platform-lead">США. Два типа аккаунта — физлицо и бизнес. Обязателен US-адрес, 18+, физический товар.</div>
+  </div>
+  <div class="tt-body">
+
+    <div class="dtabs" style="--tab-accent:var(--tt-red)">
+      <button class="dtab on" onclick="dTab('tt','req',this)">Требования</button>
+      <button class="dtab" onclick="dTab('tt','docs',this)">Документы</button>
+      <button class="dtab" onclick="dTab('tt','fees',this)">Комиссии</button>
+      <button class="dtab" onclick="dTab('tt','rules',this)">Важные правила</button>
+    </div>
+
+    <!-- ТРЕБОВАНИЯ -->
+    <div class="dpanel on" id="tt-req">
+      <div class="dsteps" style="--step-accent:var(--tt-red)">
+        <div class="dstep key">
+          <div class="dstep-l"><div class="dnum">1</div><div class="dline"></div></div>
+          <div class="dstep-b">
+            <div class="dstep-title">Два типа продавца</div>
+            <div class="dstep-desc">
+              <b style="color:#fff">Individual</b> — физлицо. Быстрая регистрация по паспорту или Driver License.<br><br>
+              <b style="color:#fff">Business</b> — зарегистрированная US-компания (LLC, Corp). Нужен EIN и документы от IRS.
+            </div>
+          </div>
+        </div>
+        <div class="dstep key">
+          <div class="dstep-l"><div class="dnum">2</div><div class="dline"></div></div>
+          <div class="dstep-b">
+            <div class="dstep-title">Базовые условия</div>
+            <div class="dstep-desc">
+              Возраст 18+ · проживание в США · уникальный номер телефона и email (не используемые в другом TikTok Shop) · хотя бы один физический товар в наличии
+            </div>
+            <div class="dinset tt-dinset">
+              Цифровые товары и услуги — не принимаются. Нужен реальный физический продукт уже при регистрации.
+            </div>
+          </div>
+        </div>
+        <div class="dstep">
+          <div class="dstep-l"><div class="dnum">3</div><div class="dline"></div></div>
+          <div class="dstep-b">
+            <div class="dstep-title">Primary Business Representative (PBR)</div>
+            <div class="dstep-desc">Каждый магазин требует PBR — человека-верификатора. Один PBR может быть привязан максимум к 5 магазинам. Изменить PBR после создания нельзя.</div>
+          </div>
+        </div>
+        <div class="dstep">
+          <div class="dstep-l"><div class="dnum">4</div><div class="dline"></div></div>
+          <div class="dstep-b">
+            <div class="dstep-title">Название магазина</div>
+            <div class="dstep-desc">Максимум 40 символов. Изменить после создания невозможно — выбирайте тщательно.</div>
+          </div>
+        </div>
+        <div class="dstep">
+          <div class="dstep-l"><div class="dnum">5</div><div class="dline"></div></div>
+          <div class="dstep-b">
+            <div class="dstep-title">Логистика</div>
+            <div class="dstep-desc">С 31 марта 2026 в США доступны только: Fulfilled by TikTok (FBT) · Upgraded TikTok Shipping · Collections by TikTok (CBT). Self-ship полностью отменён. Отгрузка — 24–48 ч.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ДОКУМЕНТЫ -->
+    <div class="dpanel" id="tt-docs">
+      <div class="dcards dcards-2" style="margin-bottom:24px">
+        <div class="dcard" style="border-color:rgba(254,44,85,.3)">
+          <div class="dcard-label" style="color:var(--tt-red)">Individual</div>
+          <div class="dcard-val" style="font-family:'Mulish',sans-serif;font-size:14px">Физлицо</div>
+          <div class="dcard-note" style="margin-top:10px;line-height:1.8">
+            ✦ Паспорт США / Driver License / State ID / Green Card<br>
+            ✦ Последние 4 цифры SSN или ITIN<br>
+            ✦ Жилой адрес в США<br>
+            ✦ Форма W-9<br>
+            ✦ Личный банковский счёт
+          </div>
+        </div>
+        <div class="dcard" style="border-color:rgba(37,244,238,.2)">
+          <div class="dcard-label" style="color:var(--tt-blue)">Business</div>
+          <div class="dcard-val" style="font-family:'Mulish',sans-serif;font-size:14px">Компания</div>
+          <div class="dcard-note" style="margin-top:10px;line-height:1.8">
+            ✦ Свидетельство о регистрации компании (US)<br>
+            ✦ EIN + документ от IRS (CP 575 или IRS 147C)<br>
+            ✦ Документ директора/представителя<br>
+            ✦ Форма W-9<br>
+            ✦ Корпоративный банковский счёт
+          </div>
+        </div>
+      </div>
+      <div class="dwarn tt-warn">
+        <b>Критично:</b> имя на всех документах должно совпадать с данными в форме регистрации дословно. Даже опечатка — причина отказа. Все фото — чёткие, без наклона, не скриншоты, до 10 МБ.
+      </div>
+    </div>
+
+    <!-- КОМИССИИ -->
+    <div class="dpanel" id="tt-fees">
+      <div class="dcards dcards-3">
+        <div class="dcard" style="border-color:rgba(254,44,85,.3)">
+          <div class="dcard-label" style="color:var(--tt-red)">Реферальная</div>
+          <div class="dcard-val">6%</div>
+          <div class="dcard-note">С каждой продажи. Включает платёжную обработку.</div>
+        </div>
+        <div class="dcard">
+          <div class="dcard-label" style="color:rgba(255,255,255,.4)">Акция для новых</div>
+          <div class="dcard-val">3%</div>
+          <div class="dcard-note">На 30 дней при первой продаже в течение 60 дней после онбординга.</div>
+        </div>
+        <div class="dcard">
+          <div class="dcard-label" style="color:rgba(255,255,255,.4)">FBT (фулфилмент)</div>
+          <div class="dcard-val">от $3.58</div>
+          <div class="dcard-note">За единицу. 30 дней хранения бесплатно.</div>
+        </div>
+      </div>
+      <table class="dtable" style="margin-top:16px">
+        <thead><tr><th>Услуга</th><th>Стоимость</th><th>Примечание</th></tr></thead>
+        <tbody>
+          <tr><td>Реферальная комиссия</td><td>6% (большинство категорий)</td><td>Рассчитывается от цены товара до налогов и доставки</td></tr>
+          <tr><td>Payment processing</td><td>1.02–3.78%</td><td>Обработка платежа. Итого ~7% эффективная ставка</td></tr>
+          <tr><td>Новый продавец (30 дней)</td><td>3%</td><td>Активируется через 48 ч после первой продажи</td></tr>
+          <tr><td>FBT — фулфилмент</td><td>от $3.58/ед</td><td>Хранение до 30 дней — бесплатно</td></tr>
+          <tr><td>Возврат реферальной при рефанде</td><td>−20% от комиссии</td><td>Макс. $5 за SKU</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ПРАВИЛА -->
+    <div class="dpanel" id="tt-rules">
+      <div class="dsteps" style="--step-accent:var(--tt-red)">
+        <div class="dstep key">
+          <div class="dstep-l"><div class="dnum">!</div><div class="dline"></div></div>
+          <div class="dstep-b">
+            <div class="dstep-title">Политики запрещают</div>
+            <div class="dstep-desc">Алкоголь · оружие · поддельные товары · опасные материалы · товары без физического инвентаря. Ряд категорий требует специального разрешения.</div>
+          </div>
+        </div>
+        <div class="dstep key">
+          <div class="dstep-l"><div class="dnum">!</div><div class="dline"></div></div>
+          <div class="dstep-b">
+            <div class="dstep-title">Shop Performance Score (SPS)</div>
+            <div class="dstep-desc">
+              Метрика здоровья аккаунта. <b style="color:#fff">SPS 2.5+</b> — минимально допустимый. <b style="color:#fff">SPS 4.0+</b> — лучшая видимость и привилегии. Влияют: скорость отгрузки, отзывы, точность описания.
+            </div>
+          </div>
+        </div>
+        <div class="dstep">
+          <div class="dstep-l"><div class="dnum">3</div><div class="dline"></div></div>
+          <div class="dstep-b">
+            <div class="dstep-title">Бизнес-тип изменить нельзя</div>
+            <div class="dstep-desc">После выбора Individual или Business — сменить невозможно. Для смены нужно создавать новый аккаунт.</div>
+          </div>
+        </div>
+        <div class="dstep">
+          <div class="dstep-l"><div class="dnum">4</div><div class="dline"></div></div>
+          <div class="dstep-b">
+            <div class="dstep-title">Политики — не статичны</div>
+            <div class="dstep-desc">Требования TikTok Shop регулярно обновляются. Следите за Seller Center — нарушение новых правил грозит штрафами и блокировкой.</div>
+          </div>
+        </div>
+      </div>
+      <div class="dwarn tt-warn">
+        <b>Важно для вас:</b> по условиям платформы аккаунт продавца должен принадлежать US-резиденту. При работе через Chicmama LLC убедитесь, что Primary Business Representative — физлицо с US-адресом.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- AMAZON -->
+<div id="s-az" class="section az-section">
+  <div class="az-hero">
+    <div class="platform-eye">02 — Amazon</div>
+    <div class="platform-h1" style="color:#fff">Регистрация<br>продавца</div>
+    <div class="platform-lead" style="color:rgba(255,255,255,.55)">США. Individual или Professional план. ИП и юрлицо не обязательны — можно как физлицо.</div>
+  </div>
+  <div class="az-body">
+
+    <div class="dtabs" style="--tab-accent:var(--az-orange)">
+      <button class="dtab on" onclick="dTab('az','req',this)">Требования</button>
+      <button class="dtab" onclick="dTab('az','docs',this)">Документы</button>
+      <button class="dtab" onclick="dTab('az','fees',this)">Планы и комиссии</button>
+      <button class="dtab" onclick="dTab('az','fba',this)">FBA vs FBM</button>
+    </div>
+
+    <!-- ТРЕБОВАНИЯ -->
+    <div class="dpanel on" id="az-req">
+      <div class="dsteps" style="--step-accent:var(--az-orange)">
+        <div class="dstep key">
+          <div class="dstep-l"><div class="dnum">1</div><div class="dline"></div></div>
+          <div class="dstep-b">
+            <div class="dstep-title">Два плана — без LLC</div>
+            <div class="dstep-desc">
+              <b style="color:#fff">Individual:</b> $0.99 с каждой продажи, до 40 товаров/мес, без рекламных инструментов.<br><br>
+              <b style="color:#fff">Professional:</b> $39.99/мес, неограниченные товары, реклама, аналитика, bulk-загрузка.<br><br>
+              Регистрироваться как компания необязательно — <code style="background:rgba(255,153,0,.15);color:var(--az-orange)">None, I am an individual</code> — полноценный аккаунт.
+            </div>
+          </div>
+        </div>
+        <div class="dstep key">
+          <div class="dstep-l"><div class="dnum">2</div><div class="dline"></div></div>
+          <div class="dstep-b">
+            <div class="dstep-title">Верификация личности</div>
+            <div class="dstep-desc">В 2025 году усиленная проверка: фото с документом на камеру или видеозвонок с сотрудником Amazon. Аккаунт активируется обычно в течение 1–3 рабочих дней.</div>
+          </div>
+        </div>
+        <div class="dstep">
+          <div class="dstep-l"><div class="dnum">3</div><div class="dline"></div></div>
+          <div class="dstep-b">
+            <div class="dstep-title">Один аккаунт — 4 рынка</div>
+            <div class="dstep-desc">Аккаунт с sell.amazon.com даёт доступ к США, Канаде, Мексике и Бразилии. Для Европы, Азии и MENA — отдельный аккаунт.</div>
+          </div>
+        </div>
+        <div class="dstep">
+          <div class="dstep-l"><div class="dnum">4</div><div class="dline"></div></div>
+          <div class="dstep-b">
+            <div class="dstep-title">Brand Registry</div>
+            <div class="dstep-desc">Бесплатная программа защиты бренда. Для входа нужен зарегистрированный или pending trademark. Открывает A+ Content, расширенную аналитику и защиту от копирования.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ДОКУМЕНТЫ -->
+    <div class="dpanel" id="az-docs">
+      <div class="dcards dcards-2" style="margin-bottom:24px">
+        <div class="dcard" style="border-color:rgba(255,153,0,.3)">
+          <div class="dcard-label" style="color:var(--az-orange)">Удостоверение личности</div>
+          <div class="dcard-note" style="margin-top:8px;line-height:1.9">
+            ✦ Паспорт или Driver License<br>
+            ✦ Государственный ID<br>
+            ✦ Данные должны совпадать с аккаунтом
+          </div>
+        </div>
+        <div class="dcard" style="border-color:rgba(255,153,0,.2)">
+          <div class="dcard-label" style="color:rgba(255,255,255,.4)">Подтверждение адреса</div>
+          <div class="dcard-note" style="margin-top:8px;line-height:1.9">
+            ✦ Банковская или коммунальная выписка<br>
+            ✦ Не старше 180 дней<br>
+            ✦ Полная страница, без обрезки
+          </div>
+        </div>
+        <div class="dcard" style="border-color:rgba(255,153,0,.2)">
+          <div class="dcard-label" style="color:rgba(255,255,255,.4)">Финансы</div>
+          <div class="dcard-note" style="margin-top:8px;line-height:1.9">
+            ✦ Банковский счёт и реквизиты<br>
+            ✦ Кредитная/дебетовая карта (для сборов)<br>
+            ✦ Форма W-9 (US граждане) / W-8BEN (иностранцы)
+          </div>
+        </div>
+        <div class="dcard" style="border-color:rgba(255,153,0,.2)">
+          <div class="dcard-label" style="color:rgba(255,255,255,.4)">Для компаний</div>
+          <div class="dcard-note" style="margin-top:8px;line-height:1.9">
+            ✦ Регистрационный номер компании<br>
+            ✦ EIN<br>
+            ✦ Зарегистрированный юридический адрес
+          </div>
+        </div>
+      </div>
+      <div class="dwarn az-warn">
+        <b>Главная ошибка:</b> расхождение данных между документами. Даже «Ltd.» вместо «Limited» — причина задержки. Загружайте цветные сканы целиком, без обрезки, не скриншоты.
+      </div>
+    </div>
+
+    <!-- КОМИССИИ -->
+    <div class="dpanel" id="az-fees">
+      <div class="dcards dcards-2" style="margin-bottom:24px">
+        <div class="dcard" style="border-color:rgba(255,153,0,.3)">
+          <div class="dcard-label" style="color:var(--az-orange)">Individual план</div>
+          <div class="dcard-val">$0.99</div>
+          <div class="dcard-note">с каждой продажи + реферальная комиссия. До 40 товаров в месяц. Без рекламных инструментов.</div>
+        </div>
+        <div class="dcard" style="border-color:rgba(255,153,0,.4)">
+          <div class="dcard-label" style="color:var(--az-orange)">Professional план</div>
+          <div class="dcard-val">$39.99</div>
+          <div class="dcard-note">в месяц + реферальная комиссия. Неограниченные товары, реклама, аналитика, bulk-инструменты.</div>
+        </div>
+      </div>
+      <table class="dtable">
+        <thead><tr><th>Категория</th><th>Реферальная %</th></tr></thead>
+        <tbody>
+          <tr><td>Одежда и аксессуары</td><td>17%</td></tr>
+          <tr><td>Электроника</td><td>8%</td></tr>
+          <tr><td>Красота и здоровье</td><td>8%</td></tr>
+          <tr><td>Дом и кухня</td><td>15%</td></tr>
+          <tr><td>Игрушки и игры</td><td>15%</td></tr>
+          <tr><td>Спорт и отдых</td><td>15%</td></tr>
+          <tr><td>Офис</td><td>15%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- FBA vs FBM -->
+    <div class="dpanel" id="az-fba">
+      <div class="dcards dcards-2" style="margin-bottom:20px">
+        <div class="dcard" style="border-color:rgba(255,153,0,.35)">
+          <div class="dcard-label" style="color:var(--az-orange)">FBA — Fulfilled by Amazon</div>
+          <div class="dcard-note" style="margin-top:10px;line-height:1.9">
+            ✦ Amazon хранит, упаковывает, доставляет<br>
+            ✦ Доступ к значку Prime<br>
+            ✦ Amazon обрабатывает возвраты<br>
+            ✦ Доп. сборы: хранение, фулфилмент<br>
+            ✦ Лимиты инвентаря — до 5 мес прогноза продаж<br><br>
+            <span style="color:rgba(255,255,255,.35);font-size:11px">Рекомендуется для масштабирования, особенно из-за рубежа</span>
+          </div>
+        </div>
+        <div class="dcard">
+          <div class="dcard-label" style="color:rgba(255,255,255,.4)">FBM — Fulfilled by Merchant</div>
+          <div class="dcard-note" style="margin-top:10px;line-height:1.9">
+            ✦ Продавец сам хранит и отправляет<br>
+            ✦ Больше контроля над упаковкой<br>
+            ✦ Нет складских сборов Amazon<br>
+            ✦ Нет доступа к Prime по умолчанию<br>
+            ✦ Ответственность за возвраты — на продавце<br><br>
+            <span style="color:rgba(255,255,255,.35);font-size:11px">Подходит для крупногабаритных или нишевых товаров</span>
+          </div>
+        </div>
+      </div>
+      <div class="dwarn az-warn">
+        <b>Требования FBA:</b> штрихкоды (UPC, FNSKU или ASIN) на каждой единице, правильная упаковка. С марта 2025 — компенсация за потерянный товар рассчитывается от себестоимости производства, не от рыночной цены.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- WILDBERRIES -->
+<div id="s-wb" class="section wb-section">
+  <div class="wb-hero">
+    <div class="platform-eye">03 — Wildberries</div>
+    <div class="platform-h1" style="color:#fff">Регистрация<br>продавца</div>
+    <div class="platform-lead" style="color:rgba(255,255,255,.55)">Россия. Самозанятый, ИП или ООО. Взнос 30 000 ₽. Регистрация полностью онлайн.</div>
+  </div>
+  <div class="wb-body">
+
+    <div class="dtabs" style="--tab-accent:var(--wb)">
+      <button class="dtab on" onclick="dTab('wb','req',this)">Требования</button>
+      <button class="dtab" onclick="dTab('wb','docs',this)">Документы</button>
+      <button class="dtab" onclick="dTab('wb','fees',this)">Комиссии</button>
+      <button class="dtab" onclick="dTab('wb','schemes',this)">Схемы работы</button>
+    </div>
+
+    <!-- ТРЕБОВАНИЯ -->
+    <div class="dpanel on" id="wb-req">
+      <div class="dsteps" style="--step-accent:var(--wb)">
+        <div class="dstep key">
+          <div class="dstep-l"><div class="dnum">1</div><div class="dline"></div></div>
+          <div class="dstep-b">
+            <div class="dstep-title">Три формы регистрации</div>
+            <div class="dstep-desc">
+              <b style="color:#fff">Самозанятый</b> — самый быстрый старт. Лимит дохода 2.4 млн ₽/год. Налог 4–6%.<br><br>
+              <b style="color:#fff">ИП</b> — без лимита дохода, полный доступ ко всем функциям. Самый популярный вариант.<br><br>
+              <b style="color:#fff">ООО</b> — для крупного бизнеса, нескольких учредителей, работы с юрлицами.
+            </div>
+          </div>
+        </div>
+        <div class="dstep key">
+          <div class="dstep-l"><div class="dnum">2</div><div class="dline"></div></div>
+          <div class="dstep-b">
+            <div class="dstep-title">Регистрационный взнос — 30 000 ₽</div>
+            <div class="dstep-desc">Лицензионный платёж, включает НДС 20%. Оплата — только с расчётного счёта на ваш ИНН. После зачисления (3–5 рабочих дней) кабинет активируется и вы получаете бонусы на продвижение.</div>
+            <div class="dinset wb-dinset">
+              Платёж не является гарантийным взносом — он не возвращается при выходе с платформы.
+            </div>
+          </div>
+        </div>
+        <div class="dstep">
+          <div class="dstep-l"><div class="dnum">3</div><div class="dline"></div></div>
+          <div class="dstep-b">
+            <div class="dstep-title">Проверка в реестрах ФНС</div>
+            <div class="dstep-desc">Компания или ИП должны быть актуальны в реестрах. Если только зарегистрировали — подождите несколько дней перед регистрацией на WB: данные обновляются с задержкой.</div>
+          </div>
+        </div>
+        <div class="dstep">
+          <div class="dstep-l"><div class="dnum">4</div><div class="dline"></div></div>
+          <div class="dstep-b">
+            <div class="dstep-title">Маркировка «Честный знак»</div>
+            <div class="dstep-desc">Обязательна для: одежды, обуви, парфюмерии, постельного белья, ювелирных изделий, табака, шин. Нужна предварительная регистрация в системе и коды на каждой единице.</div>
+          </div>
+        </div>
+        <div class="dstep">
+          <div class="dstep-l"><div class="dnum">5</div><div class="dline"></div></div>
+          <div class="dstep-b">
+            <div class="dstep-title">Оферта — читайте внимательно</div>
+            <div class="dstep-desc">Без принятия оферты торговля невозможна. Wildberries устанавливает условия самостоятельно — продавцы не могут вносить изменения. Там же — все штрафы за нарушения.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ДОКУМЕНТЫ -->
+    <div class="dpanel" id="wb-docs">
+      <div class="dcards dcards-3" style="margin-bottom:24px">
+        <div class="dcard" style="border-color:rgba(203,17,171,.4)">
+          <div class="dcard-label" style="color:var(--wb)">Самозанятый</div>
+          <div class="dcard-note" style="margin-top:10px;line-height:1.9">
+            ✦ Паспорт РФ<br>
+            ✦ ИНН<br>
+            ✦ СНИЛС<br>
+            ✦ Банковская карта (выплаты)
+          </div>
+        </div>
+        <div class="dcard" style="border-color:rgba(203,17,171,.25)">
+          <div class="dcard-label" style="color:rgba(203,17,171,.7)">ИП</div>
+          <div class="dcard-note" style="margin-top:10px;line-height:1.9">
+            ✦ ИНН<br>
+            ✦ ОГРНИП<br>
+            ✦ Расчётный счёт<br>
+            ✦ Паспорт ИП
+          </div>
+        </div>
+        <div class="dcard" style="border-color:rgba(203,17,171,.25)">
+          <div class="dcard-label" style="color:rgba(203,17,171,.7)">ООО</div>
+          <div class="dcard-note" style="margin-top:10px;line-height:1.9">
+            ✦ ИНН<br>
+            ✦ ОГРН<br>
+            ✦ Выписка ЕГРЮЛ (до 30 дней)<br>
+            ✦ Реквизиты р/счёта<br>
+            ✦ Доверенность (если не директор)
+          </div>
+        </div>
+      </div>
+      <div class="dwarn wb-warn">
+        <b>Документы на товары:</b> при регистрации WB может их не запросить, но обязан предоставить по первому требованию. Для сертифицируемых категорий (детское, обувь, косметика) — сертификаты или декларации соответствия. Отсутствие грозит снятием товара и штрафом.
+      </div>
+    </div>
+
+    <!-- КОМИССИИ -->
+    <div class="dpanel" id="wb-fees">
+      <div class="dcards dcards-3" style="margin-bottom:24px">
+        <div class="dcard" style="border-color:rgba(203,17,171,.3)">
+          <div class="dcard-label" style="color:var(--wb)">Диапазон комиссий</div>
+          <div class="dcard-val">3–25%</div>
+          <div class="dcard-note">Зависит от категории, схемы работы и региона склада.</div>
+        </div>
+        <div class="dcard">
+          <div class="dcard-label" style="color:rgba(255,255,255,.4)">Взнос при регистрации</div>
+          <div class="dcard-val">30 000 ₽</div>
+          <div class="dcard-note">Лицензионный платёж. Часть возвращается бонусами на продвижение.</div>
+        </div>
+        <div class="dcard">
+          <div class="dcard-label" style="color:rgba(255,255,255,.4)">Логистика WB</div>
+          <div class="dcard-val">от 30 ₽</div>
+          <div class="dcard-note">За доставку одного заказа. Зависит от габаритов и склада.</div>
+        </div>
+      </div>
+      <table class="dtable">
+        <thead><tr><th>Категория</th><th>Примерная комиссия</th></tr></thead>
+        <tbody>
+          <tr><td>Одежда, обувь</td><td>15–25%</td></tr>
+          <tr><td>Электроника</td><td>5–10%</td></tr>
+          <tr><td>Красота и уход</td><td>15–20%</td></tr>
+          <tr><td>Дом и сад</td><td>12–20%</td></tr>
+          <tr><td>Детские товары</td><td>10–20%</td></tr>
+          <tr><td>Спорт</td><td>10–20%</td></tr>
+          <tr><td>Продукты питания</td><td>3–10%</td></tr>
+        </tbody>
+      </table>
+      <div class="dwarn wb-warn" style="margin-top:16px">
+        <b>Обновление:</b> в июне 2025 WB поднял комиссию на 5% для большинства категорий. Актуальные ставки — в личном кабинете продавца.
+      </div>
+    </div>
+
+    <!-- СХЕМЫ РАБОТЫ -->
+    <div class="dpanel" id="wb-schemes">
+      <div class="dcards dcards-3" style="margin-bottom:20px">
+        <div class="dcard" style="border-color:rgba(203,17,171,.4)">
+          <div class="dcard-label" style="color:var(--wb)">FBO / FBW</div>
+          <div class="dcard-note" style="margin-top:10px;line-height:1.9">
+            WB принимает на склад, хранит, маркирует, доставляет покупателю.<br><br>
+            ✦ Выше приоритет в поиске<br>
+            ✦ Быстрая доставка<br>
+            ✦ Оплата хранения<br>
+            ✦ Нужна регулярная поставка
+          </div>
+        </div>
+        <div class="dcard">
+          <div class="dcard-label" style="color:rgba(255,255,255,.4)">FBS</div>
+          <div class="dcard-note" style="margin-top:10px;line-height:1.9">
+            Вы храните у себя, отгружаете на склад WB по мере заказов.<br><br>
+            ✦ Ниже риск заморозки товара<br>
+            ✦ Гибкость по ассортименту<br>
+            ✦ Самостоятельная упаковка<br>
+            ✦ Чуть ниже приоритет в поиске
+          </div>
+        </div>
+        <div class="dcard">
+          <div class="dcard-label" style="color:rgba(255,255,255,.4)">DBS</div>
+          <div class="dcard-note" style="margin-top:10px;line-height:1.9">
+            Доставка силами продавца напрямую покупателю.<br><br>
+            ✦ Для крупногабаритных товаров<br>
+            ✦ Полный контроль над доставкой<br>
+            ✦ Не для всех категорий<br>
+            ✦ Доступно не во всех регионах
+          </div>
+        </div>
+      </div>
+      <div class="dwarn wb-warn">
+        <b>Рекомендация для старта:</b> FBS — меньше рисков, не нужен большой первоначальный склад на WB. После проверки спроса — переходите на FBO для максимального приоритета в поиске.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- СРАВНЕНИЕ -->
+<div id="s-cmp" class="section cmp-section light-section">
+  <div class="cmp-eye">Итог</div>
+  <div class="cmp-h1">Сравнение платформ</div>
+  <div class="cmp-lead">Ключевые параметры рядом — чтобы выбрать правильную точку входа.</div>
+
+  <table class="cmp-table">
+    <thead>
+      <tr>
+        <th>Параметр</th>
+        <th>🎵 TikTok Shop</th>
+        <th>📦 Amazon</th>
+        <th>🛍️ Wildberries</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Рынок</td>
+        <td>США (и ещё 10+ стран)</td>
+        <td>США + CA, MX, BR, EU, Asia</td>
+        <td>РФ, Беларусь, Казахстан</td>
+      </tr>
+      <tr>
+        <td>Кто может продавать</td>
+        <td>18+, US-резидент</td>
+        <td>Любой (с US банк. счётом)</td>
+        <td>Самозанятый / ИП / ООО</td>
+      </tr>
+      <tr>
+        <td>Взнос при входе</td>
+        <td class="val-g">Бесплатно</td>
+        <td class="val-g">Бесплатно</td>
+        <td>30 000 ₽</td>
+      </tr>
+      <tr>
+        <td>Абонентская плата</td>
+        <td class="val-g">Нет</td>
+        <td>$39.99/мес (Professional)</td>
+        <td class="val-g">Нет</td>
+      </tr>
+      <tr>
+        <td>Комиссия с продажи</td>
+        <td>6%</td>
+        <td>8–17% (по категориям)</td>
+        <td>3–25% (по категориям)</td>
+      </tr>
+      <tr>
+        <td>Нужна компания</td>
+        <td class="val-g">Нет (Individual)</td>
+        <td class="val-g">Нет (Individual)</td>
+        <td>Нет (самозанятый)</td>
+      </tr>
+      <tr>
+        <td>Ключевой документ</td>
+        <td>US ID + SSN/ITIN</td>
+        <td>Паспорт + выписка (180 дней)</td>
+        <td>ИНН + ОГРНИП/ОГРН</td>
+      </tr>
+      <tr>
+        <td>Верификация</td>
+        <td>Авто + ручная</td>
+        <td>Фото/видеозвонок (1–3 дня)</td>
+        <td>По ИНН (автоматически)</td>
+      </tr>
+      <tr>
+        <td>Контент</td>
+        <td class="val-r">Видео обязательно</td>
+        <td>Фото + описание</td>
+        <td>Фото + инфографика</td>
+      </tr>
+      <tr>
+        <td>Фулфилмент</td>
+        <td>Сам / 3PL / FBT</td>
+        <td>FBA / FBM</td>
+        <td>FBO / FBS / DBS</td>
+      </tr>
+      <tr>
+        <td>Сложность входа</td>
+        <td>Средняя</td>
+        <td>Средняя</td>
+        <td>Низкая</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:32px">
+    <div style="padding:20px;background:var(--tt-bg);color:#fff;border-left:3px solid var(--tt-red)">
+      <div style="font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--tt-red);margin-bottom:8px">TIKTOK SHOP — ИТОГ</div>
+      <div style="font-size:13px;line-height:1.7;color:rgba(255,255,255,.6)">Лучший выбор если есть видеоконтент или бюджет на UGC-креаторов. Самая низкая комиссия (6%). Требует US-резидентства или компании.</div>
+    </div>
+    <div style="padding:20px;background:var(--az-bg);color:#fff;border-left:3px solid var(--az-orange)">
+      <div style="font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--az-orange);margin-bottom:8px">AMAZON — ИТОГ</div>
+      <div style="font-size:13px;line-height:1.7;color:rgba(255,255,255,.6)">Самый большой рынок. FBA снимает логистику. Высокие реферальные в ряде категорий. Жёсткая верификация, но вход доступен без компании.</div>
+    </div>
+    <div style="padding:20px;background:var(--wb-bg);color:#fff;border-left:3px solid var(--wb)">
+      <div style="font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--wb);margin-bottom:8px">WILDBERRIES — ИТОГ</div>
+      <div style="font-size:13px;line-height:1.7;color:rgba(255,255,255,.6)">Самый простой вход. Можно начать как самозанятый. Взнос 30 000 ₽. Крупнейший маркетплейс РФ с многомиллионной аудиторией.</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ПОСЛЕ РЕГИСТРАЦИИ -->
+<div id="s-after" class="section" style="background:var(--bg);padding:0 0 72px">
+
+  <!-- Hero -->
+  <div style="background:var(--ink);padding:52px 64px 44px;position:relative;overflow:hidden">
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 85% 50%,rgba(126,200,224,.12) 0%,transparent 60%);pointer-events:none"></div>
+    <div style="font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:10px">После регистрации</div>
+    <div style="font-family:'Playfair Display',serif;font-size:38px;font-weight:900;color:#fff;margin-bottom:12px;line-height:1.1">Что делать<br>после одобрения</div>
+    <div style="font-size:13px;color:rgba(255,255,255,.5);max-width:520px;line-height:1.75">Аккаунт одобрен — это только начало. Склад, блогеры, первые продажи, операционные отличия платформ.</div>
+  </div>
+
+  <div style="padding:48px 64px 0">
+
+  <!-- TABS -->
+  <div style="display:flex;gap:0;border-bottom:0.5px solid var(--line2);margin-bottom:36px">
+    <button onclick="afterTab('warehouse',this)" class="after-tab" style="padding:9px 20px 11px;font-size:12px;font-weight:600;cursor:pointer;background:none;border:none;border-bottom:2px solid var(--ink);margin-bottom:-0.5px;color:var(--ink);letter-spacing:.03em;font-family:'Mulish',sans-serif;transition:all .12s">Склад и фулфилмент</button>
+    <button onclick="afterTab('creators',this)" class="after-tab" style="padding:9px 20px 11px;font-size:12px;font-weight:600;cursor:pointer;background:none;border:none;border-bottom:2px solid transparent;margin-bottom:-0.5px;color:var(--muted);letter-spacing:.03em;font-family:'Mulish',sans-serif;transition:all .12s">Блогеры и образцы</button>
+    <button onclick="afterTab('listings',this)" class="after-tab" style="padding:9px 20px 11px;font-size:12px;font-weight:600;cursor:pointer;background:none;border:none;border-bottom:2px solid transparent;margin-bottom:-0.5px;color:var(--muted);letter-spacing:.03em;font-family:'Mulish',sans-serif;transition:all .12s">Карточки и листинги</button>
+    <button onclick="afterTab('ops',this)" class="after-tab" style="padding:9px 20px 11px;font-size:12px;font-weight:600;cursor:pointer;background:none;border:none;border-bottom:2px solid transparent;margin-bottom:-0.5px;color:var(--muted);letter-spacing:.03em;font-family:'Mulish',sans-serif;transition:all .12s">Операционные различия</button>
+  </div>
+
+  <!-- СКЛАД -->
+  <div id="after-warehouse" class="after-panel">
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;margin-bottom:28px">
+
+      <div style="background:var(--tt-bg);padding:24px;color:#fff">
+        <div style="font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--tt-red);margin-bottom:16px">🎵 TIKTOK SHOP</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.7);line-height:1.75;margin-bottom:16px">
+          <b style="color:#fff">Три варианта фулфилмента:</b>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="padding:12px;background:rgba(255,255,255,.05);border-left:2px solid var(--tt-red)">
+            <div style="font-size:11px;font-weight:700;color:#fff;margin-bottom:3px">Fulfilled by TikTok (FBT)</div>
+            <div style="font-size:11px;color:rgba(255,255,255,.45);line-height:1.6">Отправляете товар на склад TikTok → они упаковывают и доставляют. От $3.58/ед. 30 дней хранения бесплатно. Лучшая скорость доставки.</div>
+          </div>
+          <div style="padding:12px;background:rgba(255,255,255,.05)">
+            <div style="font-size:11px;font-weight:700;color:#ff6b6b;margin-bottom:3px">⚠️ Self-ship отменён с 31.03.2026</div>
+            <div style="font-size:11px;color:rgba(255,255,255,.45);line-height:1.6">С 31 марта 2026 самостоятельная отправка в США запрещена. Все продавцы обязаны использовать FBT, Upgraded TikTok Shipping или Collections by TikTok.</div>
+          </div>
+          <div style="padding:12px;background:rgba(255,255,255,.05)">
+            <div style="font-size:11px;font-weight:700;color:#fff;margin-bottom:3px">3PL партнёр</div>
+            <div style="font-size:11px;color:rgba(255,255,255,.45);line-height:1.6">Сторонний склад берёт хранение и отгрузку. Гибко, но дороже чем FBT на объёме.</div>
+          </div>
+        </div>
+        <div style="margin-top:14px;padding:10px 12px;background:rgba(254,44,85,.1);font-size:11px;color:rgba(255,255,255,.5);line-height:1.6">
+          <b style="color:var(--tt-red)">Рекомендация:</b> при старте — Self-ship. Когда продажи стабильны — FBT для ускорения доставки и роста рейтинга.
+        </div>
+      </div>
+
+      <div style="background:var(--az-bg);padding:24px;color:#fff">
+        <div style="font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--az-orange);margin-bottom:16px">📦 AMAZON</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="padding:12px;background:rgba(255,255,255,.05);border-left:2px solid var(--az-orange)">
+            <div style="font-size:11px;font-weight:700;color:#fff;margin-bottom:3px">FBA (рекомендуется)</div>
+            <div style="font-size:11px;color:rgba(255,255,255,.45);line-height:1.6">Отправляете партию на склад Amazon → они хранят, упаковывают, доставляют, обрабатывают возвраты. Значок Prime. Лучшая конверсия.</div>
+          </div>
+          <div style="padding:12px;background:rgba(255,255,255,.05)">
+            <div style="font-size:11px;font-weight:700;color:#fff;margin-bottom:3px">FBM (своими силами)</div>
+            <div style="font-size:11px;color:rgba(255,255,255,.45);line-height:1.6">Вы сами храните и отправляете. Нет Prime по умолчанию. Больше контроля над упаковкой, меньше доп. расходов. Подходит для нестандартных товаров.</div>
+          </div>
+          <div style="padding:12px;background:rgba(255,255,255,.05)">
+            <div style="font-size:11px;font-weight:700;color:#fff;margin-bottom:3px">FBA + FBM (гибрид)</div>
+            <div style="font-size:11px;color:rgba(255,255,255,.45);line-height:1.6">Основные продажи через FBA, резервный сток — FBM. Защита от out-of-stock при проблемах с поставкой на Amazon.</div>
+          </div>
+        </div>
+        <div style="margin-top:14px;padding:10px 12px;background:rgba(255,153,0,.08);font-size:11px;color:rgba(255,255,255,.5);line-height:1.6">
+          <b style="color:var(--az-orange)">Важно FBA 2026:</b> FBA Prep Services отменён с 01.01.2026 — весь инвентарь должен поступать полностью подготовленным. Лимиты инвентаря — до 5 мес прогноза. FBA-сборы выросли на ~$0.08/ед с 15.01.2026.
+        </div>
+      </div>
+
+      <div style="background:var(--wb-bg);padding:24px;color:#fff">
+        <div style="font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--wb);margin-bottom:16px">🛍️ WILDBERRIES</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="padding:12px;background:rgba(255,255,255,.05);border-left:2px solid var(--wb)">
+            <div style="font-size:11px;font-weight:700;color:#fff;margin-bottom:3px">FBO/FBW (склад WB)</div>
+            <div style="font-size:11px;color:rgba(255,255,255,.45);line-height:1.6">Привозите партию на склад WB → они хранят и доставляют. Приоритет в поиске выше. Подходит для товаров с устойчивым спросом.</div>
+          </div>
+          <div style="padding:12px;background:rgba(255,255,255,.05)">
+            <div style="font-size:11px;font-weight:700;color:#fff;margin-bottom:3px">FBS (свой склад) ← старт</div>
+            <div style="font-size:11px;color:rgba(255,255,255,.45);line-height:1.6">Храните у себя, регулярно везёте на склад WB по мере заказов. Меньше риска заморозки остатков. Лучший вариант для теста нового товара.</div>
+          </div>
+          <div style="padding:12px;background:rgba(255,255,255,.05)">
+            <div style="font-size:11px;font-weight:700;color:#fff;margin-bottom:3px">DBS (своя доставка)</div>
+            <div style="font-size:11px;color:rgba(255,255,255,.45);line-height:1.6">Сами доставляете покупателю. Для крупногабарита и специфических регионов. Не для всех категорий.</div>
+          </div>
+        </div>
+        <div style="margin-top:14px;padding:10px 12px;background:rgba(203,17,171,.08);font-size:11px;color:rgba(255,255,255,.5);line-height:1.6">
+          <b style="color:var(--wb)">Рекомендация:</b> начните с FBS — меньше рисков, не нужно везти большую партию сразу. После проверки спроса — FBO.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- БЛОГЕРЫ -->
+  <div id="after-creators" class="after-panel" style="display:none">
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:28px">
+
+      <div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--tt-red);margin-bottom:14px;text-transform:uppercase">🎵 TikTok Shop — Affiliate + UGC</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="padding:16px;background:var(--bg2);border-left:2px solid var(--tt-red)">
+            <div style="font-size:13px;font-weight:700;color:var(--ink);margin-bottom:6px">Product Marketplace</div>
+            <div style="font-size:12px;color:var(--muted);line-height:1.7">Добавьте товары в TikTok Shop Product Marketplace — это каталог для аффилиат-креаторов. Они сами выбирают ваш товар, снимают видео и получают комиссию с продаж. Самый масштабируемый канал на TikTok Shop.</div>
+          </div>
+          <div style="padding:16px;background:var(--bg2)">
+            <div style="font-size:13px;font-weight:700;color:var(--ink);margin-bottom:6px">Рассылка образцов (Sampling)</div>
+            <div style="font-size:12px;color:var(--muted);line-height:1.7">
+              Внутри Seller Center есть инструмент Creator Samples — отправляете бесплатные образцы конкретным блогерам. Они не обязаны делать контент, но большинство делают.<br><br>
+              <b>Как выбирать:</b> ниша совпадает с товаром · от 10K подписчиков · хороший ER (не боты) · последний пост не старше 2 недель.
+            </div>
+          </div>
+          <div style="padding:16px;background:var(--bg2)">
+            <div style="font-size:13px;font-weight:700;color:var(--ink);margin-bottom:6px">Комиссия для креаторов</div>
+            <div style="font-size:12px;color:var(--muted);line-height:1.7">
+              Вы сами устанавливаете % комиссии для аффилиатов — рекомендуется 10–25%. Чем выше, тем привлекательнее для блогеров. Ваши <b>Cleaneets</b> — 20–25%, что хорошо конкурентно.
+            </div>
+          </div>
+          <div style="padding:16px;background:var(--bg2)">
+            <div style="font-size:13px;font-weight:700;color:var(--ink);margin-bottom:6px">Open Collaboration vs Targeted</div>
+            <div style="font-size:12px;color:var(--muted);line-height:1.7">
+              <b>Open:</b> любой блогер может взять товар в промо — пассивно, работает само.<br>
+              <b>Targeted:</b> вы сами приглашаете конкретных блогеров с условиями — быстрее и предсказуемее для старта.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--az-orange);margin-bottom:14px;text-transform:uppercase">📦 Amazon — влияние контента</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="padding:16px;background:var(--bg2);border-left:2px solid var(--az-orange)">
+            <div style="font-size:13px;font-weight:700;color:var(--ink);margin-bottom:6px">Amazon Associates / Influencer</div>
+            <div style="font-size:12px;color:var(--muted);line-height:1.7">Блогеры могут зарабатывать комиссию через программу Amazon Associates — они ставят ссылки на ваши товары. Работает через YouTube, Instagram, TikTok, блоги.</div>
+          </div>
+          <div style="padding:16px;background:var(--bg2)">
+            <div style="font-size:13px;font-weight:700;color:var(--ink);margin-bottom:6px">Образцы блогерам</div>
+            <div style="font-size:12px;color:var(--muted);line-height:1.7">Amazon сам не организует рассылку образцов — это ваша инициатива. Найдите блогеров в нише → отправьте напрямую → попросите оставить честный отзыв.<br><br><b>Важно:</b> нельзя требовать положительный отзыв взамен товара — нарушение политики Amazon. Только честный.</div>
+          </div>
+          <div style="padding:16px;background:var(--bg2)">
+            <div style="font-size:13px;font-weight:700;color:var(--ink);margin-bottom:6px">Vine Program</div>
+            <div style="font-size:12px;color:var(--muted);line-height:1.7">Программа Amazon для сбора первых отзывов. Вы отдаёте 30 бесплатных единиц товара — Vine-рецензенты оставляют подробные отзывы. Стоит $200/ASIN. Отличный старт для нового товара.</div>
+          </div>
+        </div>
+
+        <div style="font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--wb);margin-top:24px;margin-bottom:14px;text-transform:uppercase">🛍️ Wildberries — работа с блогерами</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="padding:16px;background:var(--bg2);border-left:2px solid var(--wb)">
+            <div style="font-size:13px;font-weight:700;color:var(--ink);margin-bottom:6px">Внешний трафик через блогеров</div>
+            <div style="font-size:12px;color:var(--muted);line-height:1.7">WB не имеет встроенной аффилиат-программы как TikTok. Блогеры ведут трафик на карточку через прямые ссылки. Работает через Telegram, Instagram, YouTube.</div>
+          </div>
+          <div style="padding:16px;background:var(--bg2)">
+            <div style="font-size:13px;font-weight:700;color:var(--ink);margin-bottom:6px">Образцы → отзывы</div>
+            <div style="font-size:12px;color:var(--muted);line-height:1.7">Первые отзывы на WB критичны для ранжирования. Стратегия: отправьте товар знакомым или микро-блогерам → они покупают через WB и оставляют отзыв. Накрутка и боты — бан.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="padding:16px 20px;background:var(--ink);color:#fff;font-size:13px;line-height:1.7">
+      <b>Главное различие:</b> TikTok Shop — единственная платформа с встроенной вирусной аффилиат-моделью. Amazon и WB требуют самостоятельного поиска блогеров и внешней координации. Для TikTok 20–30 активных UGC-создателей могут дать эффект лавины продаж без рекламного бюджета.
+    </div>
+  </div>
+
+  <!-- ЛИСТИНГИ -->
+  <div id="after-listings" class="after-panel" style="display:none">
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;margin-bottom:24px">
+
+      <div style="background:var(--tt-bg);padding:22px;color:#fff">
+        <div style="font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--tt-red);margin-bottom:14px">🎵 TIKTOK SHOP</div>
+        <div style="display:flex;flex-direction:column;gap:8px;font-size:12px;color:rgba(255,255,255,.55);line-height:1.7">
+          <div>📸 <b style="color:#fff">Фото:</b> минимум 1, рекомендуется 5–9. Белый фон + lifestyle</div>
+          <div>🎬 <b style="color:#fff">Видео:</b> ключевой инструмент. Шоппинг-видео с тегом товара прямо ведут на покупку</div>
+          <div>📝 <b style="color:#fff">Описание:</b> короткое, выгоды первыми. SEO-ключи в первых 3 строках</div>
+          <div>💰 <b style="color:#fff">Цена:</b> конкурентная. TikTok показывает сравнение цен</div>
+          <div>⭐ <b style="color:#fff">Отзывы:</b> критичны. Покупатели смотрят до видео</div>
+          <div>🏷️ <b style="color:#fff">Название:</b> бренд + ключ + выгода. Максимум 60 символов</div>
+        </div>
+      </div>
+
+      <div style="background:var(--az-bg);padding:22px;color:#fff">
+        <div style="font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--az-orange);margin-bottom:14px">📦 AMAZON</div>
+        <div style="display:flex;flex-direction:column;gap:8px;font-size:12px;color:rgba(255,255,255,.55);line-height:1.7">
+          <div>📸 <b style="color:#fff">Фото:</b> минимум 7. Белый фон обязателен для главного. Инфографика важна</div>
+          <div>📝 <b style="color:#fff">Title:</b> до 200 символов. Бренд + ключ + размер/цвет + выгода</div>
+          <div>✅ <b style="color:#fff">Bullets (5 штук):</b> ключевые преимущества. Первое слово заглавными</div>
+          <div>📄 <b style="color:#fff">A+ Content:</b> расширенное описание с инфографикой. Поднимает конверсию на 8–20%</div>
+          <div>⭐ <b style="color:#fff">Отзывы:</b> 15+ нужны для нормального ранжирования. Vine + Email campaigns</div>
+          <div>🔑 <b style="color:#fff">Backend keywords:</b> скрытые ключи — заполняйте полностью (250 байт)</div>
+        </div>
+      </div>
+
+      <div style="background:var(--wb-bg);padding:22px;color:#fff">
+        <div style="font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--wb);margin-bottom:14px">🛍️ WILDBERRIES</div>
+        <div style="display:flex;flex-direction:column;gap:8px;font-size:12px;color:rgba(255,255,255,.55);line-height:1.7">
+          <div>📸 <b style="color:#fff">Фото:</b> минимум 5–7. Инфографика с ключами в тексте на фото — must have</div>
+          <div>📝 <b style="color:#fff">Название:</b> ключевые слова + характеристики. До 100 символов</div>
+          <div>📊 <b style="color:#fff">Характеристики:</b> заполнять полностью — влияет на фильтры и поиск</div>
+          <div>🗂️ <b style="color:#fff">Описание:</b> SEO-текст с ключами. До 5000 символов</div>
+          <div>⭐ <b style="color:#fff">Отзывы:</b> критичны с первого дня. Без отзывов карточка не ранжируется</div>
+          <div>🎥 <b style="color:#fff">Видео:</b> поднимает конверсию на 15–30% по данным WB</div>
+        </div>
+      </div>
+
+    </div>
+    <div style="padding:16px 20px;background:var(--bg2);border-left:3px solid var(--ink);font-size:13px;color:var(--muted);line-height:1.7">
+      <b style="color:var(--ink)">Общее правило:</b> первые 7 дней после публикации карточки — самые важные для алгоритма на всех трёх платформах. Запускайте рекламу или работу с блогерами сразу при старте, не ждите органики.
+    </div>
+  </div>
+
+  <!-- ОПЕРАЦИОННЫЕ РАЗЛИЧИЯ -->
+  <div id="after-ops" class="after-panel" style="display:none">
+
+    <table class="cmp-table" style="margin-bottom:28px">
+      <thead>
+        <tr>
+          <th>Что</th>
+          <th style="color:var(--tt-red)">🎵 TikTok Shop</th>
+          <th style="color:var(--az-orange)">📦 Amazon</th>
+          <th style="color:var(--wb)">🛍️ Wildberries</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Скорость отгрузки</td>
+          <td>24–48 ч обязательно</td>
+          <td>FBA — авто. FBM — 2 дня</td>
+          <td>FBS — по графику поставок</td>
+        </tr>
+        <tr>
+          <td>Возвраты</td>
+          <td>Продавец обрабатывает сам</td>
+          <td>FBA — Amazon. FBM — продавец</td>
+          <td>WB обрабатывает, продавец платит за возврат</td>
+        </tr>
+        <tr>
+          <td>Общение с покупателем</td>
+          <td>Через TikTok чат</td>
+          <td>Только через Amazon Messaging</td>
+          <td>Нет прямого контакта с покупателем</td>
+        </tr>
+        <tr>
+          <td>Реклама внутри платформы</td>
+          <td>Ads Manager + TikTok Promote</td>
+          <td>Sponsored Products, Brands, Display</td>
+          <td>ВБ.Продвижение, автореклама</td>
+        </tr>
+        <tr>
+          <td>Аналитика продаж</td>
+          <td>Seller Center — базовая</td>
+          <td>Brand Analytics — подробная</td>
+          <td>Аналитика WB + JEM подписка</td>
+        </tr>
+        <tr>
+          <td>Периодичность выплат</td>
+          <td>Каждые 15 дней</td>
+          <td>Каждые 14 дней (резерв 60 дней)</td>
+          <td>Еженедельно</td>
+        </tr>
+        <tr>
+          <td>Штрафы</td>
+          <td>За поздние отгрузки, брак</td>
+          <td>За нарушения политики, плохие метрики</td>
+          <td>Жёсткие: за упаковку, опоздание, пересортицу</td>
+        </tr>
+        <tr>
+          <td>Промо / скидки</td>
+          <td>Flash Sale, купоны, скидки</td>
+          <td>Lightning Deal, купоны, Prime Day</td>
+          <td>Акции WB обязательны, ценовые войны</td>
+        </tr>
+        <tr>
+          <td>Конкурентная среда</td>
+          <td>Растущая, менее насыщена</td>
+          <td>Очень высокая, особенно в популярных нишах</td>
+          <td>Высокая, особенно одежда и электроника</td>
+        </tr>
+        <tr>
+          <td>Ключ к успеху</td>
+          <td>Видеоконтент + UGC-блогеры</td>
+          <td>SEO + отзывы + FBA</td>
+          <td>Инфографика + SEO + цена + отзывы</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px">
+      <div style="padding:18px;background:var(--tt-bg);color:#fff;border-top:2px solid var(--tt-red)">
+        <div style="font-size:10px;font-weight:700;letter-spacing:.12em;color:var(--tt-red);margin-bottom:8px">ГЛАВНОЕ НА TIKTOK</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.6);line-height:1.7">Без видео — нет продаж. Алгоритм продвигает товар через видео, не через каталог. Один вирусный ролик может дать тысячи продаж за 24 часа.</div>
+      </div>
+      <div style="padding:18px;background:var(--az-bg);color:#fff;border-top:2px solid var(--az-orange)">
+        <div style="font-size:10px;font-weight:700;letter-spacing:.12em;color:var(--az-orange);margin-bottom:8px">ГЛАВНОЕ НА AMAZON</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.6);line-height:1.7">Buy Box — ключевой элемент. Кто его держит — тот получает 80%+ продаж. Цена + отзывы + FBA = Buy Box. Первые 60 дней — период резерва выплат.</div>
+      </div>
+      <div style="padding:18px;background:var(--wb-bg);color:#fff;border-top:2px solid var(--wb)">
+        <div style="font-size:10px;font-weight:700;letter-spacing:.12em;color:var(--wb);margin-bottom:8px">ГЛАВНОЕ НА WB</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.6);line-height:1.7">Участие в акциях WB почти обязательно для видимости. WB может принудительно снизить цену. Штрафы суровее всех — читайте оферту до мелочей.</div>
+      </div>
+    </div>
+
+  </div>
+
+  </div>
+</div>
+
+
+<!-- ROADMAP -->
+<div id="s-roadmap" class="section" style="background:var(--bg);padding:52px 64px 72px">
+  <div class="cmp-eye">Дорожная карта</div>
+  <div class="cmp-h1">От идеи до первой продажи</div>
+  <div class="cmp-lead">Реалистичный таймлайн для каждой платформы — с учётом верификации, подготовки и первых заказов.</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;margin-top:16px">
+
+    <div style="background:var(--tt-bg);padding:24px;color:#fff">
+      <div style="font-size:10px;font-weight:700;letter-spacing:.16em;color:var(--tt-red);margin-bottom:16px">🎵 TIKTOK SHOP</div>
+      <div style="display:flex;flex-direction:column">
+        <div style="display:flex;gap:14px;padding:12px 0;border-bottom:0.5px solid rgba(255,255,255,.07)"><div style="min-width:56px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--tt-red);padding-top:2px">День 1</div><div><div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:2px">Регистрация в Seller Center</div><div style="font-size:11px;color:rgba(255,255,255,.4);line-height:1.6">Тип аккаунта → загрузка документов</div></div></div>
+        <div style="display:flex;gap:14px;padding:12px 0;border-bottom:0.5px solid rgba(255,255,255,.07)"><div style="min-width:56px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--tt-red);padding-top:2px">1–3 дня</div><div><div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:2px">Верификация документов</div><div style="font-size:11px;color:rgba(255,255,255,.4);line-height:1.6">Авто + ручная. Обычно 24–48 ч</div></div></div>
+        <div style="display:flex;gap:14px;padding:12px 0;border-bottom:0.5px solid rgba(255,255,255,.07)"><div style="min-width:56px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--tt-red);padding-top:2px">День 3–5</div><div><div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:2px">Загрузка товаров + банк</div><div style="font-size:11px;color:rgba(255,255,255,.4);line-height:1.6">Карточки, фото, цены, привязка счёта</div></div></div>
+        <div style="display:flex;gap:14px;padding:12px 0;border-bottom:0.5px solid rgba(255,255,255,.07)"><div style="min-width:56px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--tt-red);padding-top:2px">Нед. 2–4</div><div><div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:2px">Первые продажи</div><div style="font-size:11px;color:rgba(255,255,255,.4);line-height:1.6">Через UGC-видео или рассылку образцов блогерам</div></div></div>
+        <div style="display:flex;gap:14px;padding:12px 0"><div style="min-width:56px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--tt-red);padding-top:2px">День 15+</div><div><div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:2px">Первая выплата</div><div style="font-size:11px;color:rgba(255,255,255,.4);line-height:1.6">Раз в 15 дней после подтверждения заказа</div></div></div>
+      </div>
+    </div>
+
+    <div style="background:var(--az-bg);padding:24px;color:#fff">
+      <div style="font-size:10px;font-weight:700;letter-spacing:.16em;color:var(--az-orange);margin-bottom:16px">📦 AMAZON</div>
+      <div style="display:flex;flex-direction:column">
+        <div style="display:flex;gap:14px;padding:12px 0;border-bottom:0.5px solid rgba(255,255,255,.07)"><div style="min-width:56px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--az-orange);padding-top:2px">День 1</div><div><div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:2px">Регистрация Seller Central</div><div style="font-size:11px;color:rgba(255,255,255,.4);line-height:1.6">Выбор плана → данные → документы</div></div></div>
+        <div style="display:flex;gap:14px;padding:12px 0;border-bottom:0.5px solid rgba(255,255,255,.07)"><div style="min-width:56px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--az-orange);padding-top:2px">1–3 дня</div><div><div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:2px">Identity Verification</div><div style="font-size:11px;color:rgba(255,255,255,.4);line-height:1.6">Фото с документом или видеозвонок с Amazon</div></div></div>
+        <div style="display:flex;gap:14px;padding:12px 0;border-bottom:0.5px solid rgba(255,255,255,.07)"><div style="min-width:56px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--az-orange);padding-top:2px">Нед. 1–2</div><div><div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:2px">Листинг + ASIN</div><div style="font-size:11px;color:rgba(255,255,255,.4);line-height:1.6">Описание, ключи, фото (мин. 7 штук)</div></div></div>
+        <div style="display:flex;gap:14px;padding:12px 0;border-bottom:0.5px solid rgba(255,255,255,.07)"><div style="min-width:56px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--az-orange);padding-top:2px">Нед. 2–3</div><div><div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:2px">Отправка на FBA</div><div style="font-size:11px;color:rgba(255,255,255,.4);line-height:1.6">Упаковка + FNSKU лейблы + доставка на склад</div></div></div>
+        <div style="display:flex;gap:14px;padding:12px 0"><div style="min-width:56px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--az-orange);padding-top:2px">День 60+</div><div><div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:2px">Первая выплата</div><div style="font-size:11px;color:rgba(255,255,255,.4);line-height:1.6">Каждые 14 дней. Первые 60 дней — резерв</div></div></div>
+      </div>
+    </div>
+
+    <div style="background:var(--wb-bg);padding:24px;color:#fff">
+      <div style="font-size:10px;font-weight:700;letter-spacing:.16em;color:var(--wb);margin-bottom:16px">🛍️ WILDBERRIES</div>
+      <div style="display:flex;flex-direction:column">
+        <div style="display:flex;gap:14px;padding:12px 0;border-bottom:0.5px solid rgba(255,255,255,.07)"><div style="min-width:56px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--wb);padding-top:2px">День 1</div><div><div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:2px">Регистрация WB Партнёры</div><div style="font-size:11px;color:rgba(255,255,255,.4);line-height:1.6">seller.wildberries.ru → телефон → ИНН</div></div></div>
+        <div style="display:flex;gap:14px;padding:12px 0;border-bottom:0.5px solid rgba(255,255,255,.07)"><div style="min-width:56px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--wb);padding-top:2px">День 1–2</div><div><div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:2px">Оплата гарантийного взноса</div><div style="font-size:11px;color:rgba(255,255,255,.4);line-height:1.6">~10 000 ₽ с р/счёта на ИНН → активация 3–5 дней</div></div></div>
+        <div style="display:flex;gap:14px;padding:12px 0;border-bottom:0.5px solid rgba(255,255,255,.07)"><div style="min-width:56px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--wb);padding-top:2px">День 5–7</div><div><div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:2px">Оферта + карточки товаров</div><div style="font-size:11px;color:rgba(255,255,255,.4);line-height:1.6">Загрузка товаров, фото, штрихкоды, цены</div></div></div>
+        <div style="display:flex;gap:14px;padding:12px 0;border-bottom:0.5px solid rgba(255,255,255,.07)"><div style="min-width:56px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--wb);padding-top:2px">Нед. 2</div><div><div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:2px">Первая поставка</div><div style="font-size:11px;color:rgba(255,255,255,.4);line-height:1.6">FBS: со своего склада. FBO: везёте на склад WB</div></div></div>
+        <div style="display:flex;gap:14px;padding:12px 0"><div style="min-width:56px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--wb);padding-top:2px">Нед. 3+</div><div><div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:2px">Первые заказы и выплаты</div><div style="font-size:11px;color:rgba(255,255,255,.4);line-height:1.6">Выплаты еженедельно после доставки</div></div></div>
+      </div>
+    </div>
+
+  </div>
+  <div style="margin-top:24px;padding:16px 20px;background:var(--bg2);border-left:3px solid #7ec8a0;font-size:13px;color:var(--muted);line-height:1.7">
+    <b style="color:var(--ink)">Самый быстрый старт:</b> Wildberries — от регистрации до первой продажи за 2–3 недели. TikTok Shop зависит от скорости создания видеоконтента. Amazon требует больше подготовки (FBA + верификация), зато масштабируется лучше всех.
+  </div>
+</div>
+
+<!-- CALCULATOR -->
+<div id="s-calc" class="section" style="background:var(--bg);padding:52px 64px 72px">
+  <div class="cmp-eye">Юнит-экономика</div>
+  <div class="cmp-h1">Калькулятор маржи</div>
+  <div class="cmp-lead">Введи параметры — увидишь реальную прибыль на каждой платформе.</div>
+  <div style="display:grid;grid-template-columns:300px 1fr;gap:32px;margin-top:16px;align-items:start">
+    <div style="background:var(--ink);padding:28px;color:#fff">
+      <div style="font-size:10px;font-weight:700;letter-spacing:.14em;color:rgba(255,255,255,.3);margin-bottom:20px">ПАРАМЕТРЫ ТОВАРА</div>
+      <div style="margin-bottom:16px"><label style="font-size:10px;font-weight:700;letter-spacing:.08em;color:rgba(255,255,255,.35);display:block;margin-bottom:6px;text-transform:uppercase">Цена продажи ($)</label><input id="c-price" type="number" value="25" min="1" oninput="calcMargin()" style="width:100%;background:rgba(255,255,255,.08);border:0.5px solid rgba(255,255,255,.15);color:#fff;padding:10px 14px;font-size:18px;font-family:'JetBrains Mono',monospace;outline:none"></div>
+      <div style="margin-bottom:16px"><label style="font-size:10px;font-weight:700;letter-spacing:.08em;color:rgba(255,255,255,.35);display:block;margin-bottom:6px;text-transform:uppercase">Себестоимость ($)</label><input id="c-cost" type="number" value="7" min="0" oninput="calcMargin()" style="width:100%;background:rgba(255,255,255,.08);border:0.5px solid rgba(255,255,255,.15);color:#fff;padding:10px 14px;font-size:18px;font-family:'JetBrains Mono',monospace;outline:none"></div>
+      <div style="margin-bottom:16px"><label style="font-size:10px;font-weight:700;letter-spacing:.08em;color:rgba(255,255,255,.35);display:block;margin-bottom:6px;text-transform:uppercase">Доставка на склад ($)</label><input id="c-ship" type="number" value="2" min="0" oninput="calcMargin()" style="width:100%;background:rgba(255,255,255,.08);border:0.5px solid rgba(255,255,255,.15);color:#fff;padding:10px 14px;font-size:18px;font-family:'JetBrains Mono',monospace;outline:none"></div>
+      <div style="margin-bottom:16px"><label style="font-size:10px;font-weight:700;letter-spacing:.08em;color:rgba(255,255,255,.35);display:block;margin-bottom:6px;text-transform:uppercase">Фулфилмент маркетплейса ($)</label><input id="c-ff" type="number" value="4" min="0" oninput="calcMargin()" style="width:100%;background:rgba(255,255,255,.08);border:0.5px solid rgba(255,255,255,.15);color:#fff;padding:10px 14px;font-size:18px;font-family:'JetBrains Mono',monospace;outline:none"></div>
+      <div><label style="font-size:10px;font-weight:700;letter-spacing:.08em;color:rgba(255,255,255,.35);display:block;margin-bottom:6px;text-transform:uppercase">Реклама / продвижение (%)</label><input id="c-ads" type="number" value="10" min="0" max="100" oninput="calcMargin()" style="width:100%;background:rgba(255,255,255,.08);border:0.5px solid rgba(255,255,255,.15);color:#fff;padding:10px 14px;font-size:18px;font-family:'JetBrains Mono',monospace;outline:none"></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <div style="background:var(--tt-bg);padding:22px 24px;border-left:3px solid var(--tt-red)">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+          <div style="font-size:10px;font-weight:700;letter-spacing:.12em;color:var(--tt-red)">🎵 TIKTOK SHOP — 6% + ~1% processing ≈ 7% факт.</div>
+          <div id="tt-profit" style="font-family:'JetBrains Mono',monospace;font-size:24px;color:#fff;font-weight:500"></div>
+        </div>
+        <div id="tt-breakdown" style="font-size:12px;color:rgba(255,255,255,.4);line-height:1.9;margin-bottom:10px"></div>
+        <div style="height:4px;background:rgba(255,255,255,.08);border-radius:2px;overflow:hidden"><div id="tt-bar" style="height:100%;background:var(--tt-red);border-radius:2px;transition:width .3s;width:0%"></div></div>
+        <div id="tt-margin-pct" style="font-size:10px;color:rgba(255,255,255,.3);margin-top:5px"></div>
+      </div>
+      <div style="background:var(--az-bg);padding:22px 24px;border-left:3px solid var(--az-orange)">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+          <div style="font-size:10px;font-weight:700;letter-spacing:.12em;color:var(--az-orange)">📦 AMAZON — комиссия 15%</div>
+          <div id="az-profit" style="font-family:'JetBrains Mono',monospace;font-size:24px;color:#fff;font-weight:500"></div>
+        </div>
+        <div id="az-breakdown" style="font-size:12px;color:rgba(255,255,255,.4);line-height:1.9;margin-bottom:10px"></div>
+        <div style="height:4px;background:rgba(255,255,255,.08);border-radius:2px;overflow:hidden"><div id="az-bar" style="height:100%;background:var(--az-orange);border-radius:2px;transition:width .3s;width:0%"></div></div>
+        <div id="az-margin-pct" style="font-size:10px;color:rgba(255,255,255,.3);margin-top:5px"></div>
+      </div>
+      <div style="background:var(--wb-bg);padding:22px 24px;border-left:3px solid var(--wb)">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+          <div style="font-size:10px;font-weight:700;letter-spacing:.12em;color:var(--wb)">🛍️ WILDBERRIES — комиссия 15–25% (ср. 20%)</div>
+          <div id="wb-profit" style="font-family:'JetBrains Mono',monospace;font-size:24px;color:#fff;font-weight:500"></div>
+        </div>
+        <div id="wb-breakdown" style="font-size:12px;color:rgba(255,255,255,.4);line-height:1.9;margin-bottom:10px"></div>
+        <div style="height:4px;background:rgba(255,255,255,.08);border-radius:2px;overflow:hidden"><div id="wb-bar" style="height:100%;background:var(--wb);border-radius:2px;transition:width .3s;width:0%"></div></div>
+        <div id="wb-margin-pct" style="font-size:10px;color:rgba(255,255,255,.3);margin-top:5px"></div>
+      </div>
+      <div style="font-size:11px;color:var(--hint);line-height:1.6">* TikTok: к 6% реферальной добавляется ~1% processing. При работе с аффилиатами: ещё +10–30% комиссия создателю. Итого реальная стоимость продажи через UGC — 17–37%.<br>* WB — продажи в ₽, расчёт условный в $ для сравнения. Комиссия зависит от категории (3–25%). С марта 2026 действует новая оферта.</div>
+    </div>
+  </div>
+</div>
+
+<!-- MISTAKES -->
+<div id="s-mistakes" class="section" style="background:var(--bg);padding:52px 64px 72px">
+  <div class="cmp-eye">Риски</div>
+  <div class="cmp-h1">Частые ошибки и блокировки</div>
+  <div class="cmp-lead">То, из-за чего теряют аккаунты и деньги. Лучше знать заранее.</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;margin-top:16px">
+
+    <div>
+      <div style="font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--tt-red);padding-bottom:10px;border-bottom:0.5px solid var(--line2);margin-bottom:14px">🎵 TIKTOK SHOP</div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="padding:14px;background:var(--bg2);border-left:2px solid var(--tt-red)"><div style="font-size:12px;font-weight:700;color:var(--ink);margin-bottom:4px">Business Verification Violation</div><div style="font-size:12px;color:var(--muted);line-height:1.6">Несовпадение данных при верификации. Блокировка на 30–90 дней или навсегда. Документы совпадают дословно — обязательно.</div></div>
+        <div style="padding:14px;background:var(--bg2);border-left:2px solid var(--tt-red)"><div style="font-size:12px;font-weight:700;color:var(--ink);margin-bottom:4px">Низкий SPS (ниже 2.5)</div><div style="font-size:12px;color:var(--muted);line-height:1.6">Поздняя отгрузка, много возвратов, плохие отзывы. Товары теряют видимость, аккаунт приостанавливается.</div></div>
+        <div style="padding:14px;background:var(--bg2);border-left:2px solid var(--tt-red)"><div style="font-size:12px;font-weight:700;color:var(--ink);margin-bottom:4px">Запрещённые товары</div><div style="font-size:12px;color:var(--muted);line-height:1.6">Мгновенная блокировка. Особенно строго: суплементы, детские товары без сертификатов, реплики брендов.</div></div>
+        <div style="padding:14px;background:var(--bg2);border-left:2px solid var(--tt-red)"><div style="font-size:12px;font-weight:700;color:var(--ink);margin-bottom:4px">Нет физического товара</div><div style="font-size:12px;color:var(--muted);line-height:1.6">Дропшиппинг без наличия товара на складе — нарушение. TikTok проверяет скорость отгрузки с первого заказа.</div></div>
+        <div style="padding:14px;background:var(--bg2);border-left:2px solid var(--tt-red)"><div style="font-size:12px;font-weight:700;color:var(--ink);margin-bottom:4px">Один PBR на 6+ магазинов</div><div style="font-size:12px;color:var(--muted);line-height:1.6">Лимит — 5 магазинов на одного PBR. Превышение ведёт к блокировке всех связанных аккаунтов.</div></div>
+      </div>
+    </div>
+
+    <div>
+      <div style="font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--az-orange);padding-bottom:10px;border-bottom:0.5px solid var(--line2);margin-bottom:14px">📦 AMAZON</div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="padding:14px;background:var(--bg2);border-left:2px solid var(--az-orange)"><div style="font-size:12px;font-weight:700;color:var(--ink);margin-bottom:4px">Account Health нарушения</div><div style="font-size:12px;color:var(--muted);line-height:1.6">Order Defect Rate выше 1%, Late Shipment выше 4%, Pre-fulfillment Cancel выше 2.5% — деактивация аккаунта.</div></div>
+        <div style="padding:14px;background:var(--bg2);border-left:2px solid var(--az-orange)"><div style="font-size:12px;font-weight:700;color:var(--ink);margin-bottom:4px">Fake отзывы</div><div style="font-size:12px;color:var(--muted);line-height:1.6">Amazon активно выявляет накрутку. Бан без предупреждения + удержание средств. Vine Program — единственный безопасный путь к быстрым отзывам.</div></div>
+        <div style="padding:14px;background:var(--bg2);border-left:2px solid var(--az-orange)"><div style="font-size:12px;font-weight:700;color:var(--ink);margin-bottom:4px">IP нарушения</div><div style="font-size:12px;color:var(--muted);line-height:1.6">Продажа под чужим брендом или использование чужих фото. Жалобы через Brand Registry → мгновенное снятие листинга.</div></div>
+        <div style="padding:14px;background:var(--bg2);border-left:2px solid var(--az-orange)"><div style="font-size:12px;font-weight:700;color:var(--ink);margin-bottom:4px">Несоответствие категории</div><div style="font-size:12px;color:var(--muted);line-height:1.6">Товар в неправильной категории или без нужных сертификатов (детские, электроника) — блокировка листинга и штрафы.</div></div>
+        <div style="padding:14px;background:var(--bg2);border-left:2px solid var(--az-orange)"><div style="font-size:12px;font-weight:700;color:var(--ink);margin-bottom:4px">Резерв выплат 60 дней</div><div style="font-size:12px;color:var(--muted);line-height:1.6">Первые 60 дней деньги замораживаются. Планируйте оборотный капитал — работать придётся в минус первые 2 месяца.</div></div>
+        <div style="padding:14px;background:var(--bg2);border-left:2px solid var(--az-orange)"><div style="font-size:12px;font-weight:700;color:var(--ink);margin-bottom:4px">Неподготовленный товар (с 2026)</div><div style="font-size:12px;color:var(--muted);line-height:1.6">FBA Prep Services отменён с 01.01.2026. Inbound defect fees выросли до $0.32–$1.74 за стандартный товар. Весь инвентарь должен приходить fully prepped.</div></div>
+      </div>
+    </div>
+
+    <div>
+      <div style="font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--wb);padding-bottom:10px;border-bottom:0.5px solid var(--line2);margin-bottom:14px">🛍️ WILDBERRIES</div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="padding:14px;background:var(--bg2);border-left:2px solid var(--wb)"><div style="font-size:12px;font-weight:700;color:var(--ink);margin-bottom:4px">Штрафы за упаковку</div><div style="font-size:12px;color:var(--muted);line-height:1.6">Неправильная упаковка, отсутствие штрихкода, пересортица — автоматические штрафы. WB самый жёсткий по операционным требованиям.</div></div>
+        <div style="padding:14px;background:var(--bg2);border-left:2px solid var(--wb)"><div style="font-size:12px;font-weight:700;color:var(--ink);margin-bottom:4px">Принудительное снижение цены</div><div style="font-size:12px;color:var(--muted);line-height:1.6">WB может участвовать в акциях от имени продавца и снижать цену. Товар уходит в убыток. Нужно следить за акциями и правильно считать минимальную цену.</div></div>
+        <div style="padding:14px;background:var(--bg2);border-left:2px solid var(--wb)"><div style="font-size:12px;font-weight:700;color:var(--ink);margin-bottom:4px">Задолженность перед WB</div><div style="font-size:12px;color:var(--muted);line-height:1.6">Если на балансе не хватает на оплату комиссий — образуется долг. 10 рабочих дней на погашение, иначе WB сам снижает цены товаров для компенсации убытков.</div></div>
+        <div style="padding:14px;background:var(--bg2);border-left:2px solid var(--wb)"><div style="font-size:12px;font-weight:700;color:var(--ink);margin-bottom:4px">Отсутствие маркировки</div><div style="font-size:12px;color:var(--muted);line-height:1.6">Без «Честного знака» для обязательных категорий (одежда, обувь) — снятие с продажи и штраф.</div></div>
+        <div style="padding:14px;background:var(--bg2);border-left:2px solid var(--wb)"><div style="font-size:12px;font-weight:700;color:var(--ink);margin-bottom:4px">Накрутка отзывов</div><div style="font-size:12px;color:var(--muted);line-height:1.6">WB жёстко выявляет самовыкупы и ботов. Блокировка карточки или всего аккаунта.</div></div>
+        <div style="padding:14px;background:var(--bg2);border-left:2px solid var(--wb)"><div style="font-size:12px;font-weight:700;color:var(--ink);margin-bottom:4px">Опоздание поставки</div><div style="font-size:12px;color:var(--muted);line-height:1.6">Не привезли в окно поставки — штраф. Опоздали на отгрузку FBS — снижение рейтинга и видимости карточки.</div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- BANNED -->
+<div id="s-banned" class="section" style="background:var(--bg);padding:52px 64px 72px">
+  <div class="cmp-eye">Ограничения</div>
+  <div class="cmp-h1">Запрещённые и ограниченные товары</div>
+  <div class="cmp-lead">Некоторые категории нельзя продавать вообще, другие требуют специального разрешения.</div>
+  <table class="cmp-table" style="margin-top:16px">
+    <thead>
+      <tr>
+        <th>Категория</th>
+        <th style="color:var(--tt-red)">🎵 TikTok Shop</th>
+        <th style="color:var(--az-orange)">📦 Amazon</th>
+        <th style="color:var(--wb)">🛍️ Wildberries</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Алкоголь</td><td class="val-r">Запрещён</td><td class="val-r">Запрещён</td><td class="val-r">Запрещён</td></tr>
+      <tr><td>Оружие и боеприпасы</td><td class="val-r">Запрещено</td><td class="val-r">Запрещено</td><td class="val-r">Запрещено</td></tr>
+      <tr><td>Табак / вейпы / сигареты</td><td class="val-r">Запрещено</td><td class="val-r">Запрещено</td><td class="val-r">Запрещено</td></tr>
+      <tr><td>Суплементы / БАДы</td><td>Нужно разрешение TikTok</td><td>Нужно одобрение Amazon</td><td class="val-g">Разрешены с документами</td></tr>
+      <tr><td>Детские товары</td><td>Сертификат безопасности</td><td>CPSC сертификат (США)</td><td>ТР ЕАЭС 008 обязателен</td></tr>
+      <tr><td>Электроника</td><td class="val-g">Разрешена</td><td>FCC/UL сертификат</td><td>ТР ЕАЭС 037, EAC</td></tr>
+      <tr><td>Косметика</td><td>FDA compliance нужна</td><td>Строгие требования FDA</td><td>ТР ЕАЭС 009, регистрация</td></tr>
+      <tr><td>Лекарства / медизделия</td><td class="val-r">Запрещено</td><td class="val-r">Запрещено</td><td class="val-r">Запрещено</td></tr>
+      <tr><td>Еда / продукты питания</td><td>Ограниченный доступ</td><td>Нужно одобрение категории</td><td class="val-g">Разрешены</td></div></tr>
+      <tr><td>Подделки / реплики</td><td class="val-r">Бан навсегда</td><td class="val-r">Бан навсегда</td><td class="val-r">Бан навсегда</td></tr>
+      <tr><td>Одежда и обувь</td><td class="val-g">Разрешены</td><td class="val-g">Разрешены</td><td>«Честный знак» обязателен</td></tr>
+      <tr><td>Ювелирные изделия</td><td class="val-g">Разрешены</td><td>Нужно одобрение Amazon</td><td>ГИИС ДМДК для ювелирки</td></tr>
+    </tbody>
+  </table>
+  <div style="margin-top:24px;padding:16px 20px;background:var(--ink);color:rgba(255,255,255,.6);font-size:13px;line-height:1.7">
+    <b style="color:#fff">Правило:</b> перед запуском любой категории — проверяйте актуальный список запрещённых товаров в Seller Center / Seller Central / WB Партнёры. Списки обновляются. Нарушение = бан без предупреждения.
+  </div>
+</div>
+
+<!-- START 1000 -->
+<div id="s-start1000" class="section" style="background:var(--bg);padding:52px 64px 72px">
+  <div class="cmp-eye">Стратегия</div>
+  <div class="cmp-h1">Старт с $1 000</div>
+  <div class="cmp-lead">Куда вложить первую тысячу — практический разбор по каждой платформе.</div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;margin-top:16px">
+
+    <div style="background:var(--tt-bg);padding:24px;color:#fff">
+      <div style="font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--tt-red);margin-bottom:4px">🎵 TIKTOK SHOP</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:28px;color:var(--tt-red);margin-bottom:16px">$1 000</div>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px">
+        <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:0.5px solid rgba(255,255,255,.07)"><span style="font-size:12px;color:rgba(255,255,255,.5)">Первая партия товара</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#fff">$500</span></div>
+        <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:0.5px solid rgba(255,255,255,.07)"><span style="font-size:12px;color:rgba(255,255,255,.5)">Образцы для 15–20 блогеров</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#fff">$200</span></div>
+        <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:0.5px solid rgba(255,255,255,.07)"><span style="font-size:12px;color:rgba(255,255,255,.5)">Фото и видеосъёмка товара</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#fff">$150</span></div>
+        <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:0.5px solid rgba(255,255,255,.07)"><span style="font-size:12px;color:rgba(255,255,255,.5)">TikTok Ads (тест)</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#fff">$100</span></div>
+        <div style="display:flex;justify-content:space-between;padding:8px 0"><span style="font-size:12px;color:rgba(255,255,255,.5)">Упаковка и доставка</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#fff">$50</span></div>
+      </div>
+      <div style="padding:12px;background:rgba(254,44,85,.1);font-size:11px;color:rgba(255,255,255,.55);line-height:1.6">
+        <b style="color:var(--tt-red)">Главная ставка:</b> образцы блогерам. 15–20 UGC-видео от разных авторов = шанс на вирусный эффект без большого рекламного бюджета. Один хит окупает всё.
+      </div>
+    </div>
+
+    <div style="background:var(--az-bg);padding:24px;color:#fff">
+      <div style="font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--az-orange);margin-bottom:4px">📦 AMAZON</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:28px;color:var(--az-orange);margin-bottom:16px">$1 000</div>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px">
+        <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:0.5px solid rgba(255,255,255,.07)"><span style="font-size:12px;color:rgba(255,255,255,.5)">Первая партия товара</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#fff">$500</span></div>
+        <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:0.5px solid rgba(255,255,255,.07)"><span style="font-size:12px;color:rgba(255,255,255,.5)">Доставка на FBA склад</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#fff">$100</span></div>
+        <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:0.5px solid rgba(255,255,255,.07)"><span style="font-size:12px;color:rgba(255,255,255,.5)">Vine Program (30 отзывов)</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#fff">$200</span></div>
+        <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:0.5px solid rgba(255,255,255,.07)"><span style="font-size:12px;color:rgba(255,255,255,.5)">Sponsored Products (старт)</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#fff">$150</span></div>
+        <div style="display:flex;justify-content:space-between;padding:8px 0"><span style="font-size:12px;color:rgba(255,255,255,.5)">Фото + A+ контент</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#fff">$50</span></div>
+      </div>
+      <div style="padding:12px;background:rgba(255,153,0,.08);font-size:11px;color:rgba(255,255,255,.55);line-height:1.6">
+        <b style="color:var(--az-orange)">Главная ставка:</b> Vine + реклама в первые 30 дней. Без отзывов товар невидим. $200 на Vine — лучшая инвестиция на Amazon для нового листинга.
+      </div>
+    </div>
+
+    <div style="background:var(--wb-bg);padding:24px;color:#fff">
+      <div style="font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--wb);margin-bottom:4px">🛍️ WILDBERRIES</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:28px;color:var(--wb);margin-bottom:16px">$800 (~75 000 ₽)</div>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px">
+        <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:0.5px solid rgba(255,255,255,.07)"><span style="font-size:12px;color:rgba(255,255,255,.5)">Гарантийный взнос WB</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#fff">~10 000 ₽</span></div>
+        <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:0.5px solid rgba(255,255,255,.07)"><span style="font-size:12px;color:rgba(255,255,255,.5)">Первая партия товара</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#fff">60 000 ₽</span></div>
+        <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:0.5px solid rgba(255,255,255,.07)"><span style="font-size:12px;color:rgba(255,255,255,.5)">Инфографика и фото</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#fff">10 000 ₽</span></div>
+        <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:0.5px solid rgba(255,255,255,.07)"><span style="font-size:12px;color:rgba(255,255,255,.5)">Автореклама WB (старт)</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#fff">8 000 ₽</span></div>
+        <div style="display:flex;justify-content:space-between;padding:8px 0"><span style="font-size:12px;color:rgba(255,255,255,.5)">Упаковка и маркировка</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#fff">2 000 ₽</span></div>
+      </div>
+      <div style="padding:12px;background:rgba(203,17,171,.08);font-size:11px;color:rgba(255,255,255,.55);line-height:1.6">
+        <b style="color:var(--wb)">Главная ставка:</b> качественная инфографика + автореклама. WB — это SEO + визуал. Карточка с хорошей инфографикой продаёт сама, без внешнего трафика.
+      </div>
+    </div>
+
+  </div>
+
+  <div style="margin-top:24px;padding:20px 24px;background:var(--ink);color:#fff">
+    <div style="font-size:10px;font-weight:700;letter-spacing:.14em;color:rgba(255,255,255,.35);margin-bottom:12px">ВЫВОД — С ЧЕГО НАЧАТЬ</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px">
+      <div><div style="font-size:12px;font-weight:700;color:var(--tt-red);margin-bottom:4px">Если есть видеоконтент →</div><div style="font-size:12px;color:rgba(255,255,255,.5);line-height:1.6">TikTok Shop. Самая низкая комиссия, вирусный потенциал, быстрый старт при наличии блогеров или своих видео.</div></div>
+      <div><div style="font-size:12px;font-weight:700;color:var(--az-orange);margin-bottom:4px">Если нужен большой рынок →</div><div style="font-size:12px;color:rgba(255,255,255,.5);line-height:1.6">Amazon. Дольше раскачивается, требует больше инвестиций вначале, но даёт стабильные продажи и масштаб.</div></div>
+      <div><div style="font-size:12px;font-weight:700;color:var(--wb);margin-bottom:4px">Если работаете в РФ →</div><div style="font-size:12px;color:rgba(255,255,255,.5);line-height:1.6">Wildberries. Самый быстрый вход, огромная аудитория, еженедельные выплаты. Взнос 30 000 ₽ окупается быстро.</div></div>
+    </div>
+  </div>
+</div>
+
+</main>
+</div>
+
+<script>
+function go(id, el) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('on'));
+  document.querySelectorAll('.sb-link').forEach(l => l.classList.remove('on'));
+  document.getElementById('s-' + id).classList.add('on');
+  if (el) {
+    el.classList.add('on');
+  } else {
+    document.querySelectorAll('.sb-link').forEach(l => {
+      if (l.getAttribute('onclick') && l.getAttribute('onclick').includes("'" + id + "'"))
+        l.classList.add('on');
+    });
+  }
+  window.scrollTo(0, 0);
+}
+
+function afterTab(id, btn) {
+  document.querySelectorAll('.after-panel').forEach(p => p.style.display = 'none');
+  document.querySelectorAll('.after-tab').forEach(b => {
+    b.style.borderBottomColor = 'transparent';
+    b.style.color = 'var(--muted)';
+  });
+  document.getElementById('after-' + id).style.display = 'block';
+  btn.style.borderBottomColor = 'var(--ink)';
+  btn.style.color = 'var(--ink)';
+}
+
+function dTab(platform, panelId, btn) {
+  const prefix = platform + '-';
+  document.querySelectorAll('[id^="' + prefix + '"]').forEach(p => p.classList.remove('on'));
+  btn.closest('.tt-body, .az-body, .wb-body')
+     .querySelectorAll('.dtab').forEach(b => b.classList.remove('on'));
+  document.getElementById(prefix + panelId).classList.add('on');
+  btn.classList.add('on');
+}
+
+function calcMargin() {
+  var price = parseFloat(document.getElementById('c-price').value) || 0;
+  var cost  = parseFloat(document.getElementById('c-cost').value)  || 0;
+  var ship  = parseFloat(document.getElementById('c-ship').value)  || 0;
+  var ff    = parseFloat(document.getElementById('c-ff').value)    || 0;
+  var adsPct= parseFloat(document.getElementById('c-ads').value)   || 0;
+
+  var ads = price * adsPct / 100;
+  var baseCosts = cost + ship + ff + ads;
+
+  function calc(commPct, id_p, id_b, id_bar, id_pct) {
+    var comm = price * commPct / 100;
+    var profit = price - comm - baseCosts;
+    var marginPct = price > 0 ? (profit / price * 100) : 0;
+    var el_p = document.getElementById(id_p);
+    var el_b = document.getElementById(id_b);
+    var el_bar = document.getElementById(id_bar);
+    var el_pct = document.getElementById(id_pct);
+    if (!el_p) return;
+    var color = profit >= 0 ? '#fff' : '#ff6b6b';
+    el_p.style.color = color;
+    el_p.textContent = (profit >= 0 ? '+$' : '-$') + Math.abs(profit).toFixed(2);
+    el_b.innerHTML =
+      'Цена: $' + price.toFixed(2) + '<br>' +
+      'Комиссия (' + commPct + '%): -$' + comm.toFixed(2) + '<br>' +
+      'Себестоимость: -$' + cost.toFixed(2) + '<br>' +
+      'Доставка: -$' + ship.toFixed(2) + '<br>' +
+      'Фулфилмент: -$' + ff.toFixed(2) + '<br>' +
+      'Реклама (' + adsPct + '%): -$' + ads.toFixed(2);
+    var barW = Math.max(0, Math.min(100, marginPct));
+    el_bar.style.width = barW + '%';
+    el_pct.textContent = 'Маржа: ' + marginPct.toFixed(1) + '%';
+  }
+
+  calc(6,  'tt-profit', 'tt-breakdown', 'tt-bar', 'tt-margin-pct');
+  calc(15, 'az-profit', 'az-breakdown', 'az-bar', 'az-margin-pct');
+  calc(20, 'wb-profit', 'wb-breakdown', 'wb-bar', 'wb-margin-pct');
+}
+window.addEventListener('load', calcMargin);
+
+</script>
+</body>
+</html>
